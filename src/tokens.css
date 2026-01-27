@@ -1,0 +1,24 @@
+/* Design Tokens for LAOG_PT system */
+:root {
+    --bg-space: #0b0e14;
+    --bg-card: #151a24;
+    --bg-card-hover: #1c2331;
+
+    --muted-blue: #3a4b63;
+    --calm-amber: #b8924a;
+    --calm-gray: #64748b;
+    --calm-white: #e2e8f0;
+
+    --action-buy: #3b82f6;
+    /* Calm Blue instead of Green */
+    --action-wait: #64748b;
+    /* Neutral Gray */
+    --action-sell: #b8924a;
+    /* Calm Amber instead of Red */
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --header-height: 60px;
+
+    --font-main: 'Inter', sans-serif;
+    --font-display: 'Outfit', sans-serif;
+}
