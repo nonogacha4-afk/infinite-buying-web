@@ -63,6 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--p2);
+    box-sizing: border-box;
 }
 
 /* TOP BAR */
