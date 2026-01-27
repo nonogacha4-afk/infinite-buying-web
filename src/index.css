@@ -1960,3 +1960,51 @@ body {
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
 }
+
+/* --- MOBILE OPTIMIZATIONS (V2.6) --- */
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 60px !important;
+        --p4: 34px !important;
+    }
+
+    .main-container {
+        padding: var(--p4) 16px var(--p5) 16px !important;
+        gap: 16px !important;
+    }
+
+    .top-bar { padding: 0 16px !important; }
+    .brand-accent { font-size: 1.3rem !important; }
+    .header-search-group { display: none !important; }
+    .header-util-group { gap: 8px !important; }
+
+    .decision-card {
+        flex-direction: column !important;
+        padding: 40px 20px 24px 20px !important;
+        gap: 24px !important;
+        align-items: flex-start !important;
+        min-height: auto !important;
+    }
+
+    .primary-action { font-size: 3rem !important; }
+    .action-button-group { min-width: 100% !important; width: 100% !important; }
+    .primary-actions-row { flex-direction: column !important; gap: 12px !important; }
+    .btn-primary-action, .premium-mode-badge { width: 100% !important; flex: none !important; height: 64px !important; }
+    .utility-actions-row { justify-content: space-between !important; width: 100% !important; }
+    .btn-secondary-reset { width: calc(50% - 6px) !important; }
+
+    .why-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+    .zone-c { grid-template-columns: 1fr !important; }
+    .magazine-inner-grid { grid-template-columns: repeat(auto-fill, minmax(30px, 1fr)) !important; gap: 8px !important; }
+    .bullet-chamber { height: 44px !important; }
+    .bullet-visual { width: 10px !important; height: 20px !important; }
+    .confirm-modal-content, .loading-container { width: 90% !important; padding: 24px !important; }
+}
+
+@media (max-width: 480px) {
+    .primary-action { font-size: 2.5rem !important; }
+    .why-grid { grid-template-columns: 1fr !important; }
+    .supporting-values { flex-wrap: wrap !important; gap: 12px !important; }
+    .support-val { font-size: 1rem !important; }
+}
