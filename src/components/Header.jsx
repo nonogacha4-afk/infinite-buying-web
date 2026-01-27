@@ -10,10 +10,10 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                         <span className="creator-mark-animated" style={{ fontSize: '0.55rem', letterSpacing: '0.05em' }}>CHART FINDER X ANTIGRAVITY</span>
                     </div>
                 </div>
-                <div style={{ height: '32px', width: '1px', background: 'var(--border-light)', margin: '0 16px', opacity: 0.5 }}></div>
+                <div className="mobile-hide" style={{ height: '32px', width: '1px', background: 'var(--border-light)', margin: '0 16px', opacity: 0.5 }}></div>
                 <div className="brand-logo">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em' }}>무한매매기법</span>
+                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>무한매매기법</span>
                         <span style={{
                             fontSize: '0.65rem',
                             fontWeight: '900',
@@ -22,13 +22,13 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                             padding: '1px 6px',
                             borderRadius: '4px',
                             letterSpacing: '0.05em'
-                        }}>V2.3</span>
+                        }}>V2.6.1</span>
                     </div>
-                    <span className="brand-subtitle" style={{ fontSize: '0.55rem', opacity: 0.7 }}>INFINITE BUYING SYSTEM</span>
+                    <span className="brand-subtitle mobile-hide" style={{ fontSize: '0.55rem', opacity: 0.7 }}>INFINITE BUYING SYSTEM</span>
                 </div>
             </div>
 
-            <div className="top-bar-center" style={{ fontSize: '0.85rem', color: 'var(--calm-gray)', fontWeight: '600', letterSpacing: '0.05em' }}>
+            <div className="top-bar-center mobile-hide" style={{ fontSize: '0.85rem', color: 'var(--calm-gray)', fontWeight: '600', letterSpacing: '0.05em' }}>
                 MECHANICAL STRATEGY DASHBOARD
             </div>
 
