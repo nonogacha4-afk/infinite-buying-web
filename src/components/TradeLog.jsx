@@ -31,7 +31,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
             <div className="insight-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--p1)' }}>
                 <span>{t('recentTradeLog')} ({logs.length})</span>
                 {logs.length > 0 && (
-                    <button className="btn-clear-logs help-label-custom pos-left" onClick={() => onDelete('all')} data-tooltip="모든 체결 기록 영구 삭제">
+                    <button className="btn-clear-logs help-label-custom pos-left" onClick={() => onDelete('all')} data-tooltip="紐⑤뱺 泥닿껐 湲곕줉 ?곴뎄 ??젣">
                         {t('clearHistory')}
                     </button>
                 )}
@@ -41,25 +41,25 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
             {logs.length > 0 && (
                 <div className="premium-metrics-bar">
                     <div className="metric-item">
-                        <span className="metric-label">총 투자 자본</span>
+                        <span className="metric-label">珥??ъ옄 ?먮낯</span>
                         <span className="metric-value" style={{ fontSize: '1.4rem' }}>
-                            ₩{totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            ??totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </span>
                     </div>
                     <div className="metric-item">
-                        <span className="metric-label">총 보유 수량</span>
+                        <span className="metric-label">珥?蹂댁쑀 ?섎웾</span>
                         <span className="metric-value" style={{ color: 'var(--calm-white)', fontSize: '1.4rem' }}>
-                            {totalHolding.toLocaleString()} 개
+                            {totalHolding.toLocaleString()} 媛?
                         </span>
                     </div>
                     <div className="metric-item">
-                        <span className="metric-label">현재 손익</span>
+                        <span className="metric-label">?꾩옱 ?먯씡</span>
                         <span className={`metric-value ${isProfitable ? 'positive' : 'negative'}`} style={{ fontSize: '1.4rem' }}>
-                            {totalNetProfitKrw >= 0 ? '+' : '-'}₩{Math.abs(totalNetProfitKrw).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            {totalNetProfitKrw >= 0 ? '+' : '-'}??Math.abs(totalNetProfitKrw).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </span>
                     </div>
                     <div className="metric-item">
-                        <span className="metric-label">현재 수익률</span>
+                        <span className="metric-label">?꾩옱 ?섏씡瑜?/span>
                         <span className={`metric-value ${isProfitable ? 'positive' : 'negative'}`} style={{ fontSize: '1.4rem' }}>
                             {profitRate >= 0 ? '+' : '-'}{(Math.abs(Number(profitRate)) || 0).toFixed(2)}%
                         </span>
@@ -74,7 +74,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                         <th>{t('side')}</th>
                         <th>{t('quantity')}</th>
                         <th>{t('price')}</th>
-                        <th>금액</th>
+                        <th>湲덉븸</th>
                         <th style={{ textAlign: 'right' }}>{t('orderAction')}</th>
                     </tr>
                 </thead>
@@ -87,7 +87,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                                 <td>
                                     {log.note && log.note.includes('Soul-Escape') ? (
                                         <span className="text-soul" style={{ fontWeight: '700', fontSize: '0.8rem' }}>
-                                            💜 {t('soulEscape')}
+                                            ?뮏 {t('soulEscape')}
                                         </span>
                                     ) : (
                                         <span style={{
@@ -99,17 +99,17 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                                         </span>
                                     )}
                                 </td>
-                                <td style={{ fontWeight: '600' }}>{Number(log.qty || 0).toLocaleString()} 개</td>
+                                <td style={{ fontWeight: '600' }}>{Number(log.qty || 0).toLocaleString()} 媛?/td>
                                 <td style={{ fontFamily: 'var(--font-display)' }}>${Number(log.price || 0).toFixed(2)}</td>
                                 <td style={{ color: 'var(--calm-white)', fontWeight: '600' }}>
-                                    ₩{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    ??amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                 </td>
                                 <td style={{ textAlign: 'right' }}>
                                     <button
                                         className="modal-close help-label-custom pos-center"
                                         style={{ fontSize: '1.2rem', padding: '0 8px', color: 'var(--calm-gray)', background: 'none', border: 'none', cursor: 'pointer', display: 'inline-block' }}
                                         onClick={() => onDelete(idx)}
-                                        data-tooltip="기록 삭제"
+                                        data-tooltip="湲곕줉 ??젣"
                                     >
                                         &times;
                                     </button>
