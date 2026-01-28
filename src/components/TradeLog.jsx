@@ -86,9 +86,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                                 <td style={{ color: 'var(--calm-gray)', fontSize: '0.8rem' }}>{log.date}</td>
                                 <td>
                                     {log.note && log.note.includes('Soul-Escape') ? (
-                                        <span className="text-soul" style={{ fontWeight: '700', fontSize: '0.8rem' }}>
-                                            💜 {t('soulEscape')}
-                                        </span>
+                                        <span className="soul-badge">[SOUL]</span>
                                     ) : (
                                         <span style={{
                                             color: log.side === 'BUY' ? 'var(--action-buy)' : 'var(--action-sell)',
