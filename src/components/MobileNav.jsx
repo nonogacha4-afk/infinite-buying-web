@@ -2,9 +2,9 @@ import React from 'react';
 
 const MobileNav = ({ activeTab, setActiveTab, t }) => {
     const tabs = [
-        { id: 'TRADING', label: t('navTrading') || 'TRADING', icon: '?? },
-        { id: 'CHART', label: t('navChart') || 'CHART', icon: '?뱢' },
-        { id: 'HISTORY', label: t('navHistory') || 'HISTORY', icon: '?뱥' }
+        { id: 'TRADING', label: t('navTrading') || 'TRADING', icon: '^' },
+        { id: 'CHART', label: t('navChart') || 'CHART', icon: '#' },
+        { id: 'HISTORY', label: t('navHistory') || 'HISTORY', icon: 'L' }
     ];
 
     return (
