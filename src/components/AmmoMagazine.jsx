@@ -33,7 +33,7 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
                             color: '#a78bfa',
                             fontWeight: 'bold'
                         }}>
-                            +{reloadCredits} ?뮏
+                            +{reloadCredits} 💜
                         </span>
                     )}
                 </div>
@@ -59,10 +59,10 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
                                 className={`bullet-chamber ${statusClass} ${isSpent && num === currentTurn ? 'can-revive' : ''} help-label-custom pos-center`}
                                 data-tooltip={
                                     isReloaded
-                                        ? `?뮏 ?곹샎?덉텧 ?ъ옣??(${num}踰?`
+                                        ? `${t('soul_reload_tooltip')} (${num})`
                                         : isSpent && num === currentTurn
                                             ? t('reviveAmmo')
-                                            : `${t('bulletTooltip')} ??{slotAmount.toLocaleString()}`
+                                            : `${t('bulletTooltip')} ₩${slotAmount.toLocaleString()}`
                                 }
                                 onClick={isSpent && num === currentTurn ? onRevive : null}
                                 style={{ cursor: isSpent && num === currentTurn ? 'pointer' : 'default' }}
@@ -83,7 +83,7 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
 
                                 {/* Label for reloaded bullets */}
                                 {isReloaded && (
-                                    <div className="soul-reload-badge">?뮏</div>
+                                    <div className="soul-reload-badge">💜</div>
                                 )}
                             </div>
                         );
@@ -93,12 +93,12 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
 
             <div className="magazine-footer-info">
                 <div className="footer-metric">
-                    <span className="footer-label">?ъ엯 湲덉븸</span>
-                    <span className="footer-value">??Math.floor(investedCapital || 0).toLocaleString()}</span>
+                    <span className="footer-label">{t('invested_amount')}</span>
+                    <span className="footer-value">₩{Math.floor(investedCapital || 0).toLocaleString()}</span>
                 </div>
                 <div className="footer-metric">
                     <span className="footer-label">{t('remainingCapital')}</span>
-                    <span className="footer-value">??Math.floor(capitalRemaining || 0).toLocaleString()}</span>
+                    <span className="footer-value">₩{Math.floor(capitalRemaining || 0).toLocaleString()}</span>
                 </div>
             </div>
         </div >
