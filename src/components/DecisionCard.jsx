@@ -70,7 +70,7 @@ const DecisionCard = (props) => {
 
                     {props.lastUpdated && (
                         <div className="last-updated-display">
-                            LAST UPDATED · {props.lastUpdated.toLocaleString('ko-KR', {
+                            LAST UPDATED - {props.lastUpdated.toLocaleString(undefined, {
                                 year: 'numeric',
                                 month: '2-digit',
                                 day: '2-digit',
@@ -80,7 +80,7 @@ const DecisionCard = (props) => {
                                 hour12: false
                             })}
                             <span style={{ marginLeft: '12px', opacity: 0.8 }}>
-                                USD/KRW · {t('currency_krw')}{(props.fx || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                USD/KRW - {t('currency_krw')}{(props.fx || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                         </div>
                     )}
