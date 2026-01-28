@@ -146,15 +146,6 @@ function App() {
     const t = (key) => translations[language][key] || key;
 
     // Add missing translations for mobile nav
-    if (language === 'ko') {
-        translations.ko.navTrading = '留ㅻℓ?꾨왂';
-        translations.ko.navChart = '李⑦듃遺꾩꽍';
-        translations.ko.navHistory = '?꾩껜湲곕줉';
-    } else {
-        translations.en.navTrading = 'TRADING';
-        translations.en.navChart = 'CHART';
-        translations.en.navHistory = 'HISTORY';
-    }
 
     const triggerConfirm = (message, callback) => {
         setConfirmState({
@@ -561,7 +552,7 @@ function App() {
 
     const handleExecute = () => {
         if (signal.status === 'COMPLETED') {
-            alert('?대? ?ъ씠?댁씠 ?꾨즺?섏뿀?듬땲?? 珥덇린?????ㅼ떆 ?쒖옉?댁＜?몄슂.');
+            alert('Cycle already completed. Please reset to start again.');
             return;
         }
 
@@ -578,7 +569,7 @@ function App() {
 
             // Validate sell quantity (with small epsilon for floating point safety)
             if (finalQty > currentHoldings + 0.00000001) {
-                alert(`留ㅻ룄 ?섎웾(${finalQty})??蹂댁쑀 ?섎웾(${currentHoldings})??珥덇낵?⑸땲??`);
+                alert(`Sell quantity (${finalQty}) exceeds holdings (${currentHoldings}).`);
                 return;
             }
 
@@ -923,8 +914,8 @@ function App() {
             {isLoadingData && (
                 <div className="loading-overlay">
                     <div className="loading-container">
-                        <h3 className="loading-title">援ш? ?쒖꽭 ?곗씠??遺꾩꽍 以?/h3>
-                        <p className="loading-subtitle">{ticker} ?ㅼ떆媛??뺣낫 二쇱엯...</p>
+                        <h3 className="loading-title">Analyzing Market Data...</h3>
+                        <p className="loading-subtitle">{ticker} Injecting Live Data...</p>
                         <div className="loading-percentage">{loadingProgress}%</div>
                         <div className="progress-container">
                             <div className="progress-bar-fill" style={{ width: `${loadingProgress}%` }}></div>
