@@ -41,7 +41,7 @@ const TradeLogModal = ({ isOpen, onClose, logs, onDelete, currentPrice, fx, trig
                             <div className="summary-text-content">
                                 <span className="support-label">{t('summaryInvestment')}</span>
                                 <span className="support-val" style={{ fontSize: '1.6rem', color: 'var(--calm-white)' }}>
-                                    ₩{totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    {t('currency_krw')}{totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                 </span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ const TradeLogModal = ({ isOpen, onClose, logs, onDelete, currentPrice, fx, trig
                                     fontSize: '1.6rem',
                                     color: isProfitPositive ? 'var(--action-buy)' : 'var(--action-sell)'
                                 }}>
-                                    {isProfitPositive ? '+' : ''}₩{totalProfitKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    {isProfitPositive ? '+' : ''}{t('currency_krw')}{totalProfitKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                 </span>
                             </div>
                         </div>
@@ -133,9 +133,9 @@ const TradeLogModal = ({ isOpen, onClose, logs, onDelete, currentPrice, fx, trig
                                             {log.side === 'BUY' ? t('buyingTitle') : t('sellingTitle')}
                                         </span>
                                     </td>
-                                    <td>{log.qty} 개</td>
+                                    <td>{log.qty} {t('unit_shares')}</td>
                                     <td>${log.price?.toFixed(2)}</td>
-                                    <td>₩{log.amount?.toLocaleString()}</td>
+                                    <td>{t('currency_krw')}{log.amount?.toLocaleString()}</td>
                                     <td style={{ textAlign: 'right' }}>
                                         <button
                                             className="modal-close"
