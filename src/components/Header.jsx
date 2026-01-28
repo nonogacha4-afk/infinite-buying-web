@@ -13,7 +13,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                 <div className="mobile-hide" style={{ height: '32px', width: '1px', background: 'var(--border-light)', margin: '0 16px', opacity: 0.5 }}></div>
                 <div className="brand-logo">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>무한매매기법</span>
+                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em' }}>臾댄븳留ㅻℓ湲곕쾿</span>
                         <span style={{
                             fontSize: '0.65rem',
                             fontWeight: '900',
@@ -22,19 +22,19 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                             padding: '1px 6px',
                             borderRadius: '4px',
                             letterSpacing: '0.05em'
-                        }}>V2.6.1</span>
+                        }}>V2.8.0</span>
                     </div>
                     <span className="brand-subtitle mobile-hide" style={{ fontSize: '0.55rem', opacity: 0.7 }}>INFINITE BUYING SYSTEM</span>
                 </div>
             </div>
 
-            <div className="top-bar-center mobile-hide" style={{ fontSize: '0.85rem', color: 'var(--calm-gray)', fontWeight: '600', letterSpacing: '0.05em' }}>
+            <div className="top-bar-center" style={{ fontSize: '0.85rem', color: 'var(--calm-gray)', fontWeight: '600', letterSpacing: '0.05em' }}>
                 MECHANICAL STRATEGY DASHBOARD
             </div>
 
             <div className="top-bar-right" style={{ display: 'flex', alignItems: 'center' }}>
                 <div className="header-search-group" style={{ gap: '16px', display: 'flex', alignItems: 'center' }}>
-                    <div className={`ticker-selector-wrapper help-label-custom pos-bottom ${isLocked ? 'is-locked' : ''}`} data-tooltip={isLocked ? t('isLockedTooltip') : '종목 선택'}>
+                    <div className={`ticker-selector-wrapper help-label-custom pos-bottom ${isLocked ? 'is-locked' : ''}`} data-tooltip={isLocked ? t('isLockedTooltip') : '醫낅ぉ ?좏깮'}>
                         <select
                             className="ticker-selector"
                             style={{ padding: '8px 12px', borderRadius: '8px', background: 'var(--bg-glass)', fontSize: '0.9rem' }}
@@ -89,7 +89,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                         className="btn-lang-toggle help-label-custom pos-bottom"
                         style={{ height: '34px', minWidth: '42px', borderRadius: '8px' }}
                         onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-                        data-tooltip={language === 'ko' ? 'Switch to English' : '한국어로 변경'}
+                        data-tooltip={language === 'ko' ? 'Switch to English' : '?쒓뎅?대줈 蹂寃?}
                     >
                         {language === 'ko' ? 'EN' : 'KO'}
                     </button>
