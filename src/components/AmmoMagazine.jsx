@@ -33,7 +33,7 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
                             color: '#a78bfa',
                             fontWeight: 'bold'
                         }}>
-                            +{reloadCredits} 💜
+                            +{reloadCredits} [RELOADED]
                         </span>
                     )}
                 </div>
@@ -83,7 +83,7 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
 
                                 {/* Label for reloaded bullets */}
                                 {isReloaded && (
-                                    <div className="soul-reload-badge">💜</div>
+                                    <div className="soul-reload-badge">^</div>
                                 )}
                             </div>
                         );
