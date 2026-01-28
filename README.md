@@ -1,1 +1,1 @@
-Force Build V2.8.0 Final - Package Lock Added 01/28/2026 23:22:59
+CRITICAL FIX: API CommonJS for Vercel 01/28/2026 23:27:19
