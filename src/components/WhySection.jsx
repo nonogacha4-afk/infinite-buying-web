@@ -16,21 +16,21 @@ const WhySection = ({ rsi, gapDrop, belowAvg, triggerHit, defenseReason, current
         <section className="zone-b">
             <div className="why-grid">
                 <div className="why-item">
-                    <span className="why-label">현재가</span>
+                    <span className="why-label">?꾩옱媛</span>
                     <span className="why-val">${currentPrice?.toFixed(2) || '0.00'}</span>
                 </div>
                 <div className="why-item">
-                    <span className="why-label">평균단가</span>
+                    <span className="why-label">?됯퇏?④?</span>
                     <span className="why-val">${avgPrice?.toFixed(2) || '0.00'}</span>
                 </div>
                 <div className="why-item">
-                    <span className="why-label">수익률</span>
+                    <span className="why-label">?섏씡瑜?/span>
                     <span className="why-val" style={{ color: getProfitColor(profitRate), fontWeight: '700' }}>
                         {profitRate >= 0 ? '+' : ''}{profitRate?.toFixed(2)}%
                     </span>
                 </div>
                 <div className="why-item">
-                    <span className="why-label">현재 보유수량</span>
+                    <span className="why-label">?꾩옱 蹂댁쑀?섎웾</span>
                     <span className="why-val">{totalHoldings.toLocaleString()} sh</span>
                 </div>
                 <div className="why-item">
