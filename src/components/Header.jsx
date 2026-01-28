@@ -1,5 +1,6 @@
 import React from 'react';
 
+// V2.8.0 Galaxy Fold6 Optimization Build
 const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, onSettings, onViewHistory, t }) => {
     return (
         <header className="top-bar glass">
