@@ -26,7 +26,7 @@ class ErrorBoundary extends React.Component {
                     background: 'rgba(255, 0, 0, 0.1)',
                     color: 'var(--calm-white)'
                 }}>
-                    <h3 style={{ color: 'var(--neon-red)', marginBottom: '10px' }}>⚠️ Component Error</h3>
+                    <h3 style={{ color: 'var(--neon-red)', marginBottom: '10px' }}>?좑툘 Component Error</h3>
                     <pre style={{
                         fontSize: '11px',
                         overflow: 'auto',
