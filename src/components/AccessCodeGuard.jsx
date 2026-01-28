@@ -24,10 +24,10 @@ const AccessCodeGuard = ({ onVerified, t }) => {
             if (data.success) {
                 onVerified(data.token);
             } else {
-                setError(data.error || '접근 코드가 올바르지 않습니다.');
+                setError(data.error || '?묎렐 肄붾뱶媛 ?щ컮瑜댁? ?딆뒿?덈떎.');
             }
         } catch (err) {
-            setError('서버 연결에 실패했습니다. 다시 시도해 주세요.');
+            setError('?쒕쾭 ?곌껐???ㅽ뙣?덉뒿?덈떎. ?ㅼ떆 ?쒕룄??二쇱꽭??');
         } finally {
             setIsLoading(false);
         }
@@ -39,14 +39,14 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                 <div className="guard-header">
                     <span className="brand-accent">LAO</span>
                     <h2 className="guard-title">PRIVATE ACCESS</h2>
-                    <p className="guard-subtitle">이 프로그램은 초대된 파트너 전용입니다.</p>
+                    <p className="guard-subtitle">???꾨줈洹몃옩? 珥덈????뚰듃???꾩슜?낅땲??</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="guard-form">
                     <div className="input-group-premium">
                         <input
                             type="text"
-                            placeholder="초대 코드를 입력하세요"
+                            placeholder="珥덈? 肄붾뱶瑜??낅젰?섏꽭??
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
                             className={error ? 'error' : ''}
@@ -60,12 +60,12 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                         className={`btn-verify ${isLoading ? 'loading' : ''}`}
                         disabled={isLoading}
                     >
-                        {isLoading ? '검증 중...' : '확인'}
+                        {isLoading ? '寃利?以?..' : '?뺤씤'}
                     </button>
                 </form>
 
                 <div className="guard-footer">
-                    <p>© 2026 CHART FINDER X ANTIGRAVITY</p>
+                    <p>짤 2026 CHART FINDER X ANTIGRAVITY</p>
                 </div>
             </div>
 
