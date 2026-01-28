@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { calculateBuyingOrder, calculateSellingOrder, defaultStrategyConfig, calculateIndicators } from './utils/logic';
-import { fetchExchangeRate } from './utils/fx';
-import { getLastTradingDays } from './utils/date';
-import { translations } from './utils/i18n';
+import { calculateBuyingOrder, calculateSellingOrder, defaultStrategyConfig, calculateIndicators } from './utils/logic.js';
+import { fetchExchangeRate } from './utils/fx.js';
+import { getLastTradingDays } from './utils/date.js';
+import { translations } from './utils/i18n.js';
 
 // Components
-import Header from './components/Header.jsx';
+import AppHeader from './components/AppHeader.jsx';
 import DecisionCard from './components/DecisionCard.jsx';
 import WhySection from './components/WhySection.jsx';
 import PriceChart from './components/PriceChart.jsx';
@@ -687,11 +687,11 @@ function App() {
 
     return (
         <div className="app-shell">
-            <Header
+            <AppHeader
                 language={language}
                 setLanguage={setLanguage}
                 ticker={ticker}
-                setTicker={handleTickerChange}
+                setTicker={setTicker}
                 isLocked={tradeLogs.length > 0}
                 onFetch={handleFetch}
                 onSettings={() => setShowSettingsModal(true)}
