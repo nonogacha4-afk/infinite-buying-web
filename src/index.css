@@ -1960,6 +1960,7 @@ body {
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
 }
+
 /* --- MOBILE OPTIMIZATIONS (V2.6) --- */
 
 @media (max-width: 768px) {
@@ -1973,10 +1974,21 @@ body {
         gap: 16px !important;
     }
 
-    .top-bar { padding: 0 16px !important; }
-    .brand-accent { font-size: 1.3rem !important; }
-    .header-search-group { display: none !important; }
-    .header-util-group { gap: 8px !important; }
+    .top-bar {
+        padding: 0 16px !important;
+    }
+
+    .brand-accent {
+        font-size: 1.3rem !important;
+    }
+
+    .header-search-group {
+        display: none !important;
+    }
+
+    .header-util-group {
+        gap: 8px !important;
+    }
 
     .decision-card {
         flex-direction: column !important;
@@ -1986,26 +1998,84 @@ body {
         min-height: auto !important;
     }
 
-    .primary-action { font-size: 3rem !important; }
-    .action-button-group { min-width: 100% !important; width: 100% !important; }
-    .primary-actions-row { flex-direction: column !important; gap: 12px !important; }
-    .btn-primary-action, .premium-mode-badge { width: 100% !important; flex: none !important; height: 64px !important; }
-    .utility-actions-row { justify-content: space-between !important; width: 100% !important; }
-    .btn-secondary-reset { width: calc(50% - 6px) !important; }
+    .primary-action {
+        font-size: 3rem !important;
+    }
 
-    .why-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
-    .zone-c { grid-template-columns: 1fr !important; }
-    .magazine-inner-grid { grid-template-columns: repeat(auto-fill, minmax(30px, 1fr)) !important; gap: 8px !important; }
-    .bullet-chamber { height: 44px !important; }
-    .bullet-visual { width: 10px !important; height: 20px !important; }
-    .confirm-modal-content, .loading-container { width: 90% !important; padding: 24px !important; }
+    .action-button-group {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .primary-actions-row {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .btn-primary-action,
+    .premium-mode-badge {
+        width: 100% !important;
+        flex: none !important;
+        height: 64px !important;
+    }
+
+    .utility-actions-row {
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+
+    .btn-secondary-reset {
+        width: calc(50% - 6px) !important;
+    }
+
+    .why-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+    }
+
+    .zone-c {
+        grid-template-columns: 1fr !important;
+    }
+
+    .magazine-inner-grid {
+        grid-template-columns: repeat(auto-fill, minmax(30px, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+    .bullet-chamber {
+        height: 44px !important;
+    }
+
+    .bullet-visual {
+        width: 10px !important;
+        height: 20px !important;
+    }
+
+    .confirm-modal-content,
+    .loading-container {
+        width: 90% !important;
+        padding: 24px !important;
+    }
 }
 
 @media (max-width: 480px) {
-    .primary-action { font-size: 2.5rem !important; }
-    .why-grid { grid-template-columns: 1fr !important; }
-    .supporting-values { flex-wrap: wrap !important; gap: 12px !important; }
-    .support-val { font-size: 1rem !important; }
+    .primary-action {
+        font-size: 2.5rem !important;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .supporting-values {
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }
+
+    .support-val {
+        font-size: 1rem !important;
+    }
 }
 
 
@@ -2014,19 +2084,19 @@ body {
     .mobile-hide {
         display: none !important;
     }
-    
+
     .top-bar-left {
         gap: 8px !important;
     }
-    
+
     .brand-logo {
         min-width: 0 !important;
     }
-    
+
     .brand-logo div {
         flex-wrap: nowrap !important;
     }
-    
+
     .brand-logo span:first-child {
         white-space: nowrap !important;
     }
@@ -2043,7 +2113,8 @@ body {
 
 .mobile-slide-wrapper {
     display: flex;
-    width: 300%; /* 3 Tabs */
+    width: 300%;
+    /* 3 Tabs */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
@@ -2113,32 +2184,57 @@ body {
 
 /* GALAXY FOLD6 SPECIFIC OPTIMIZATIONS */
 
-/* FOLD 6 OUTER (VERY NARROW) */
-@media (max-width: 400px) {
+/* FOLD 6 OUTER (HIGH ASPECT RATIO / NARROW) */
+@media (max-width: 480px),
+(max-aspect-ratio: 1/2) {
     :root {
-        --p4: 20px;
+        --p4: 16px;
+        /* Decrease top padding for very tall screens */
+        --p3: 20px;
+        --header-height: 60px;
     }
-    
-    .brand-accent { font-size: 1.1rem !important; }
-    .primary-action { font-size: 2.2rem !important; }
-    
+
+    .brand-accent {
+        font-size: 1.15rem !important;
+    }
+
+    .brand-subtitle {
+        font-size: 0.5rem !important;
+    }
+
+    .primary-action {
+        font-size: 3rem !important;
+        line-height: 1.1;
+    }
+
+    .decision-card {
+        padding: 40px var(--p2) var(--p2) var(--p2);
+        gap: 20px;
+    }
+
     .btn-primary-action {
-        height: 56px !important;
-        font-size: 1.1rem !important;
+        height: 60px !important;
+        font-size: 1rem !important;
+    }
+
+    .mobile-nav {
+        width: 90%;
+        bottom: 15px;
+        height: 58px;
     }
 }
 
 /* FOLD 6 INNER (SQUARE TABLET) */
-@media (min-width: 600px) and (max-width: 900px) and (min-aspect-ratio: 1/1) {
+@media (min-width: 600px) and (max-width: 1000px) and (min-aspect-ratio: 1/1) {
     .main-container {
         padding: 24px !important;
         max-width: 100% !important;
     }
-    
+
     .mobile-view-container {
         overflow: visible !important;
     }
-    
+
     .mobile-slide-wrapper {
         width: 100% !important;
         transform: none !important;
@@ -2146,14 +2242,13 @@ body {
         grid-template-columns: 1fr 1fr !important;
         gap: 24px !important;
     }
-    
+
     .mobile-tab-content {
         width: 100% !important;
         min-height: auto !important;
     }
-    
+
     .mobile-nav {
         display: none !important;
     }
 }
-
