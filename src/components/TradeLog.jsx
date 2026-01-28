@@ -43,7 +43,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                     <div className="metric-item">
                         <span className="metric-label">{t('total_invested')}</span>
                         <span className="metric-value" style={{ fontSize: '1.4rem' }}>
-                            ₩{totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            {t('currency_krw')}{totalInvestedKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </span>
                     </div>
                     <div className="metric-item">
@@ -55,7 +55,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                     <div className="metric-item">
                         <span className="metric-label">{t('current_pnl')}</span>
                         <span className={`metric-value ${isProfitable ? 'positive' : 'negative'}`} style={{ fontSize: '1.4rem' }}>
-                            {totalNetProfitKrw >= 0 ? '+' : '-'}₩{Math.abs(totalNetProfitKrw).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            {totalNetProfitKrw >= 0 ? '+' : '-'}{t('currency_krw')}{Math.abs(totalNetProfitKrw).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </span>
                     </div>
                     <div className="metric-item">
@@ -102,7 +102,7 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                                 <td style={{ fontWeight: '600' }}>{Number(log.qty || 0).toLocaleString()} {t('unit_shares')}</td>
                                 <td style={{ fontFamily: 'var(--font-display)' }}>${Number(log.price || 0).toFixed(2)}</td>
                                 <td style={{ color: 'var(--calm-white)', fontWeight: '600' }}>
-                                    ₩{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    {t('currency_krw')}{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                 </td>
                                 <td style={{ textAlign: 'right' }}>
                                     <button
