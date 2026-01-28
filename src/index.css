@@ -1960,7 +1960,6 @@ body {
     align-items: center;
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
 }
-
 /* --- MOBILE OPTIMIZATIONS (V2.6) --- */
 
 @media (max-width: 768px) {
@@ -2008,3 +2007,153 @@ body {
     .supporting-values { flex-wrap: wrap !important; gap: 12px !important; }
     .support-val { font-size: 1rem !important; }
 }
+
+
+/* --- ADDITIONAL MOBILE TWEAKS (V2.6.1) --- */
+@media (max-width: 768px) {
+    .mobile-hide {
+        display: none !important;
+    }
+    
+    .top-bar-left {
+        gap: 8px !important;
+    }
+    
+    .brand-logo {
+        min-width: 0 !important;
+    }
+    
+    .brand-logo div {
+        flex-wrap: nowrap !important;
+    }
+    
+    .brand-logo span:first-child {
+        white-space: nowrap !important;
+    }
+}
+
+
+/* --- SLIDE UI & MOBILE TABS (V2.8.0) --- */
+
+.mobile-view-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.mobile-slide-wrapper {
+    display: flex;
+    width: 300%; /* 3 Tabs */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.mobile-tab-content {
+    width: 33.3333%;
+    flex-shrink: 0;
+    padding: 0 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: calc(100vh - var(--header-height) - 80px);
+}
+
+/* MOBILE NAV */
+.mobile-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 400px;
+    height: 64px;
+    z-index: 1000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--calm-gray);
+    transition: all 0.3s ease;
+    flex: 1;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: var(--action-buy);
+}
+
+.nav-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.active .nav-icon {
+    transform: translateY(-2px);
+}
+
+.nav-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* GALAXY FOLD6 SPECIFIC OPTIMIZATIONS */
+
+/* FOLD 6 OUTER (VERY NARROW) */
+@media (max-width: 400px) {
+    :root {
+        --p4: 20px;
+    }
+    
+    .brand-accent { font-size: 1.1rem !important; }
+    .primary-action { font-size: 2.2rem !important; }
+    
+    .btn-primary-action {
+        height: 56px !important;
+        font-size: 1.1rem !important;
+    }
+}
+
+/* FOLD 6 INNER (SQUARE TABLET) */
+@media (min-width: 600px) and (max-width: 900px) and (min-aspect-ratio: 1/1) {
+    .main-container {
+        padding: 24px !important;
+        max-width: 100% !important;
+    }
+    
+    .mobile-view-container {
+        overflow: visible !important;
+    }
+    
+    .mobile-slide-wrapper {
+        width: 100% !important;
+        transform: none !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 24px !important;
+    }
+    
+    .mobile-tab-content {
+        width: 100% !important;
+        min-height: auto !important;
+    }
+    
+    .mobile-nav {
+        display: none !important;
+    }
+}
+
