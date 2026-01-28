@@ -2,9 +2,9 @@ import React from 'react';
 
 const MobileNav = ({ activeTab, setActiveTab, t }) => {
     const tabs = [
-        { id: 'TRADING', label: t('navTrading') || '매매전략', icon: '⚡' },
-        { id: 'CHART', label: t('navChart') || '차트분석', icon: '📈' },
-        { id: 'HISTORY', label: t('navHistory') || '전체기록', icon: '📋' }
+        { id: 'TRADING', label: t('navTrading') || 'TRADING', icon: '?? },
+        { id: 'CHART', label: t('navChart') || 'CHART', icon: '?뱢' },
+        { id: 'HISTORY', label: t('navHistory') || 'HISTORY', icon: '?뱥' }
     ];
 
     return (
