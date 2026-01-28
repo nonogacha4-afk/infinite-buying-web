@@ -1,16 +1,16 @@
-# 무한매수법 V2.2 계산기
+# 臾댄븳留ㅼ닔踰?V2.2 怨꾩궛湲?
 
-라오어의 무한매수법(Infinite Buying Method) 원칙을 기반으로 한 투자 보조 도구입니다.
+?쇱삤?댁쓽 臾댄븳留ㅼ닔踰?Infinite Buying Method) ?먯튃??湲곕컲?쇰줈 ???ъ옄 蹂댁“ ?꾧뎄?낅땲??
 
-## 주요 기능
-- **V2.2 로직 자동 계산**: 회차별 매수/매도 주문량 생성
-- **실시간 신호**: RSI 및 가격 기반 진입/대기 신호
-- **대시보드**: 투자 진행 현황 및 변동성 경고 시각화
+## 二쇱슂 湲곕뒫
+- **V2.2 濡쒖쭅 ?먮룞 怨꾩궛**: ?뚯감蹂?留ㅼ닔/留ㅻ룄 二쇰Ц???앹꽦
+- **?ㅼ떆媛??좏샇**: RSI 諛?媛寃?湲곕컲 吏꾩엯/?湲??좏샇
+- **??쒕낫??*: ?ъ옄 吏꾪뻾 ?꾪솴 諛?蹂?숈꽦 寃쎄퀬 ?쒓컖??
 
-## 실행 방법
-1. VS Code에서 `C:\Users\cail0\.gemini\antigravity\scratch\infinite-buying-app` 폴더를 엽니다.
-2. 터미널에서 `npm install`을 실행합니다.
-3. `npm start`로 웹 앱을 실행합니다.
+## ?ㅽ뻾 諛⑸쾿
+1. VS Code?먯꽌 `C:\Users\cail0\.gemini\antigravity\scratch\infinite-buying-app` ?대뜑瑜??쎈땲??
+2. ?곕??먯뿉??`npm install`???ㅽ뻾?⑸땲??
+3. `npm start`濡????깆쓣 ?ㅽ뻾?⑸땲??
 
 
-Build Trigger: 2026-01-28 22:37:44
+Final Sync Build: 2026-01-28 22:56:02
