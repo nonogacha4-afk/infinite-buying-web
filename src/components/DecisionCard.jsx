@@ -80,7 +80,7 @@ const DecisionCard = (props) => {
                                 hour12: false
                             })}
                             <span style={{ marginLeft: '12px', opacity: 0.8 }}>
-                                USD/KRW · ₩{(props.fx || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                USD/KRW · {t('currency_krw')}{(props.fx || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                         </div>
                     )}
@@ -132,7 +132,7 @@ const DecisionCard = (props) => {
                                     color: isLackingCapital ? 'var(--action-danger)' : 'var(--calm-white)',
                                     fontWeight: '900'
                                 }}>
-                                    ₩{(finalAmountKrw || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    {t('currency_krw')}{(finalAmountKrw || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                     <span style={{
                                         fontSize: '0.75rem',
                                         display: 'block',
@@ -142,7 +142,7 @@ const DecisionCard = (props) => {
                                         fontWeight: '500',
                                         color: 'var(--calm-gray)'
                                     }}>
-                                        (₩{(props.fx || 0).toLocaleString()})
+                                        ({t('currency_krw')}{(props.fx || 0).toLocaleString()})
                                     </span>
                                 </span>
                             </div>
