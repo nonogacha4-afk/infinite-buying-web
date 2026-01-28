@@ -25,10 +25,10 @@ const AccessCodeGuard = ({ onVerified, t }) => {
             if (data.success) {
                 onVerified(data.token);
             } else {
-                setError(data.error || '?묎렐 肄붾뱶媛 ?щ컮瑜댁? ?딆뒿?덈떎.');
+                setError(data.error || t('guard_error_invalid'));
             }
         } catch (err) {
-            setError('?쒕쾭 ?곌껐???ㅽ뙣?덉뒿?덈떎. ?ㅼ떆 ?쒕룄??二쇱꽭??');
+            setError(t('guard_error_server'));
         } finally {
             setIsLoading(false);
         }
@@ -40,14 +40,14 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                 <div className="guard-header">
                     <span className="brand-accent">LAO</span>
                     <h2 className="guard-title">PRIVATE ACCESS</h2>
-                    <p className="guard-subtitle">???꾨줈洹몃옩? 珥덈????뚰듃???꾩슜?낅땲??</p>
+                    <p className="guard-subtitle">{t('guard_subtitle')}</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="guard-form">
                     <div className="input-group-premium">
                         <input
                             type="text"
-                            placeholder="珥덈? 肄붾뱶瑜??낅젰?섏꽭??
+                            placeholder={t('guard_placeholder')}
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
                             className={error ? 'error' : ''}
@@ -61,12 +61,12 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                         className={`btn-verify ${isLoading ? 'loading' : ''}`}
                         disabled={isLoading}
                     >
-                        {isLoading ? '寃利?以?..' : '?뺤씤'}
+                        {isLoading ? t('guard_loading') : t('guard_confirm')}
                     </button>
                 </form>
 
                 <div className="guard-footer">
-                    <p>짤 2026 CHART FINDER X ANTIGRAVITY</p>
+                    <p>© 2026 CHART FINDER X ANTIGRAVITY</p>
                 </div>
             </div>
 
