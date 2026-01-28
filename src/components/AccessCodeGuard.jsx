@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AccessCodeGuard.css';
 
 const AccessCodeGuard = ({ onVerified, t }) => {
     const [code, setCode] = useState('');
@@ -69,83 +70,6 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                 </div>
             </div>
 
-            <style jsx>{`
-                .access-guard-overlay {
-                    position: fixed;
-                    inset: 0;
-                    background: radial-gradient(circle at center, #1a1e2e 0%, #0d0f17 100%);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 9999;
-                    font-family: 'Inter', sans-serif;
-                }
-                .access-guard-card {
-                    width: 100%;
-                    max-width: 400px;
-                    padding: var(--p6, 48px);
-                    border-radius: 24px;
-                    text-align: center;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    animation: guard-appear 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-                }
-                @keyframes guard-appear {
-                    from { opacity: 0; transform: scale(0.95) translateY(20px); }
-                    to { opacity: 1; transform: scale(1) translateY(0); }
-                }
-                .guard-header { margin-bottom: 32px; }
-                .guard-title { 
-                    font-size: 1.5rem; 
-                    font-weight: 800; 
-                    letter-spacing: 0.1em; 
-                    margin: 8px 0;
-                    color: white;
-                }
-                .guard-subtitle { font-size: 0.9rem; color: var(--calm-gray, #94a3b8); opacity: 0.8; }
-                .guard-form { display: flex; flexDirection: column; gap: 16px; }
-                .input-group-premium { position: relative; margin-bottom: 8px; }
-                input {
-                    width: 100%;
-                    padding: 14px 20px;
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    border-radius: 12px;
-                    color: white;
-                    font-size: 1rem;
-                    transition: all 0.3s ease;
-                }
-                input:focus {
-                    outline: none;
-                    border-color: var(--muted-blue, #6366f1);
-                    background: rgba(255, 255, 255, 0.08);
-                    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
-                }
-                input.error { border-color: #ef4444; }
-                .error-message { 
-                    color: #ef4444; 
-                    font-size: 0.75rem; 
-                    margin-top: 4px; 
-                    display: block;
-                    text-align: left;
-                }
-                .btn-verify {
-                    width: 100%;
-                    padding: 14px;
-                    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-                    border: none;
-                    border-radius: 12px;
-                    color: white;
-                    font-weight: 700;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
-                .btn-verify:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
-                }
-                .btn-verify:active { transform: translateY(0); }
-                .guard-footer { margin-top: 40px; font-size: 0.7rem; opacity: 0.3; letter-spacing: 0.05em; color: white; }
-            `}</style>
         </div>
     );
 };
