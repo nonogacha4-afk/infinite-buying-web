@@ -11,3 +11,6 @@
 1. VS Code에서 `C:\Users\cail0\.gemini\antigravity\scratch\infinite-buying-app` 폴더를 엽니다.
 2. 터미널에서 `npm install`을 실행합니다.
 3. `npm start`로 웹 앱을 실행합니다.
+
+
+Build Trigger: 2026-01-28 22:37:44
