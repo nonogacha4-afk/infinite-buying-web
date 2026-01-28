@@ -62,7 +62,7 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
                                         ? `${t('soul_reload_tooltip')} (${num})`
                                         : isSpent && num === currentTurn
                                             ? t('reviveAmmo')
-                                            : `${t('bulletTooltip')} ₩${slotAmount.toLocaleString()}`
+                                            : `${t('bulletTooltip')} ${t('currency_krw')}${slotAmount.toLocaleString()}`
                                 }
                                 onClick={isSpent && num === currentTurn ? onRevive : null}
                                 style={{ cursor: isSpent && num === currentTurn ? 'pointer' : 'default' }}
@@ -94,11 +94,11 @@ const AmmoMagazine = ({ config, currentTurn, investedCapital, capitalRemaining, 
             <div className="magazine-footer-info">
                 <div className="footer-metric">
                     <span className="footer-label">{t('invested_amount')}</span>
-                    <span className="footer-value">₩{Math.floor(investedCapital || 0).toLocaleString()}</span>
+                    <span className="footer-value">{t('currency_krw')}{Math.floor(investedCapital || 0).toLocaleString()}</span>
                 </div>
                 <div className="footer-metric">
                     <span className="footer-label">{t('remainingCapital')}</span>
-                    <span className="footer-value">₩{Math.floor(capitalRemaining || 0).toLocaleString()}</span>
+                    <span className="footer-value">{t('currency_krw')}{Math.floor(capitalRemaining || 0).toLocaleString()}</span>
                 </div>
             </div>
         </div >
