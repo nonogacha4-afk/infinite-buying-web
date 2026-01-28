@@ -5,7 +5,7 @@
 
 export const defaultStrategyConfig = {
   strategyName: 'LAOG_PT',
-  version: 'v2.3.0',
+  version: 'v2.8.0',
   totalCapital: 5000000,
   totalSlots: 20,
   rsiPeriod: 14,
@@ -216,7 +216,7 @@ export const calculateSellingOrder = (avgPrice, totalQuantity, currentPrice, hig
     }
   }
 
-  // 3. SOUL-ESCAPE Logic (영혼탈출법)
+  // 3. SOUL-ESCAPE Logic (?곹샎?덉텧踰?
   // Triggered when bullets are exhausted OR Capital is exhausted.
   // PRIORITY FIX: Provide absolute priority over weak signals.
 
@@ -243,12 +243,12 @@ export const calculateSellingOrder = (avgPrice, totalQuantity, currentPrice, hig
         message: isCapitalExhausted ? 'Soul-Escape: Capital Exhausted' : 'Soul-Escape: Exit 25% at BEP'
       });
 
-      console.log('✅ SOUL-ESCAPE ACTIVATED!', orders[0]);
+      console.log('??SOUL-ESCAPE ACTIVATED!', orders[0]);
     } else {
-      console.log('❌ SOUL-ESCAPE BLOCKED: profitRate >= tp1Trigger', profitRate, '>=', tp1Trigger);
+      console.log('??SOUL-ESCAPE BLOCKED: profitRate >= tp1Trigger', profitRate, '>=', tp1Trigger);
     }
   } else {
-    console.log('❌ SOUL-ESCAPE NOT TRIGGERED: conditions not met');
+    console.log('??SOUL-ESCAPE NOT TRIGGERED: conditions not met');
   }
 
   return orders;
