@@ -66,7 +66,7 @@ const AccessCodeGuard = ({ onVerified, t }) => {
                 </form>
 
                 <div className="guard-footer">
-                    <p>© 2026 CHART FINDER X ANTIGRAVITY</p>
+                    <p>(c) 2026 CHART FINDER X ANTIGRAVITY</p>
                 </div>
             </div>
 
