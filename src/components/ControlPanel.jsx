@@ -51,7 +51,7 @@ const ControlPanel = ({
                 </div>
                 <div className="state-row">
                     <span className="state-label">Capital:</span>
-                    <span className="state-val">₩{capital.toLocaleString()}</span>
+                    <span className="state-val">??capital.toLocaleString()}</span>
                 </div>
 
                 <div className="sidebar-control-row">
