@@ -73,14 +73,14 @@ const CompletedCyclesModal = ({ isOpen, onClose, cycles, onDelete, triggerConfir
                                         </td>
                                         <td style={{ textAlign: 'right', fontWeight: '600' }}>{cycle.turns}</td>
                                         <td style={{ textAlign: 'right' }}>
-                                            ₩{cycle.totalInvestedKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                            ??cycle.totalInvestedKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                         </td>
                                         <td style={{
                                             textAlign: 'right',
                                             fontWeight: '700',
                                             color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)'
                                         }}>
-                                            {isPositive ? '+' : ''}₩{cycle.profitKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                            {isPositive ? '+' : ''}??cycle.profitKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                         </td>
                                         <td style={{
                                             textAlign: 'right',
