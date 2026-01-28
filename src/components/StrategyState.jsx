@@ -39,10 +39,10 @@ const StrategyState = ({
             <div className="state-row">
                 <span className="state-label help-label-custom pos-left" data-tooltip={t('help_remainingCapital')}>{t('remainingCapital')}</span>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                    <span className="state-val">??capitalRemaining?.toLocaleString()}</span>
+                    <span className="state-val">{t('currency_krw')}{capitalRemaining?.toLocaleString()}</span>
                     {nextSlotAmount > 0 && (
                         <span style={{ fontSize: '0.75rem', color: 'var(--action-buy)', fontWeight: '600', marginTop: '2px' }}>
-                            Next: ??nextSlotAmount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                            Next: {t('currency_krw')}{nextSlotAmount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </span>
                     )}
                 </div>
