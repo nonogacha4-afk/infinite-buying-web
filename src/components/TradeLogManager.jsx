@@ -17,7 +17,7 @@ const TradeLogManager = ({ logs, onAdd, onClear, t }) => {
                             <th>{t('logDate')}</th>
                             <th>{t('logPrice')}</th>
                             <th>{t('logQty')}</th>
-                            <th>{t('logAmount')} (₩)</th>
+                            <th>{t('logAmount')} (??</th>
                             <th style={{ textAlign: 'right' }}>{t('logFx')}</th>
                         </tr>
                     </thead>
