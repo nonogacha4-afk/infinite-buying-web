@@ -1,4 +1,4 @@
-const yahooFinance = require('yahoo-finance2').default;
+import yahooFinance from 'yahoo-finance2';
 
 async function fetchWithTimeout(resource, options = {}) {
     const { timeout = 8000 } = options;
@@ -38,7 +38,7 @@ async function getGoogleQuote(ticker) {
     return null;
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     const ticker = req.query.ticker || 'TQQQ';
     const googleData = await getGoogleQuote(ticker);
     if (googleData) return res.json(googleData);
