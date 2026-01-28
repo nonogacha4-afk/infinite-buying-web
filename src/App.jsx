@@ -147,9 +147,9 @@ function App() {
 
     // Add missing translations for mobile nav
     if (language === 'ko') {
-        translations.ko.navTrading = '매매전략';
-        translations.ko.navChart = '차트분석';
-        translations.ko.navHistory = '전체기록';
+        translations.ko.navTrading = '留ㅻℓ?꾨왂';
+        translations.ko.navChart = '李⑦듃遺꾩꽍';
+        translations.ko.navHistory = '?꾩껜湲곕줉';
     } else {
         translations.en.navTrading = 'TRADING';
         translations.en.navChart = 'CHART';
@@ -561,7 +561,7 @@ function App() {
 
     const handleExecute = () => {
         if (signal.status === 'COMPLETED') {
-            alert('이미 사이클이 완료되었습니다. 초기화 후 다시 시작해주세요.');
+            alert('?대? ?ъ씠?댁씠 ?꾨즺?섏뿀?듬땲?? 珥덇린?????ㅼ떆 ?쒖옉?댁＜?몄슂.');
             return;
         }
 
@@ -578,7 +578,7 @@ function App() {
 
             // Validate sell quantity (with small epsilon for floating point safety)
             if (finalQty > currentHoldings + 0.00000001) {
-                alert(`매도 수량(${finalQty})이 보유 수량(${currentHoldings})을 초과합니다.`);
+                alert(`留ㅻ룄 ?섎웾(${finalQty})??蹂댁쑀 ?섎웾(${currentHoldings})??珥덇낵?⑸땲??`);
                 return;
             }
 
@@ -923,8 +923,8 @@ function App() {
             {isLoadingData && (
                 <div className="loading-overlay">
                     <div className="loading-container">
-                        <h3 className="loading-title">구글 시세 데이터 분석 중</h3>
-                        <p className="loading-subtitle">{ticker} 실시간 정보 주입...</p>
+                        <h3 className="loading-title">援ш? ?쒖꽭 ?곗씠??遺꾩꽍 以?/h3>
+                        <p className="loading-subtitle">{ticker} ?ㅼ떆媛??뺣낫 二쇱엯...</p>
                         <div className="loading-percentage">{loadingProgress}%</div>
                         <div className="progress-container">
                             <div className="progress-bar-fill" style={{ width: `${loadingProgress}%` }}></div>
