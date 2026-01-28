@@ -5,21 +5,21 @@ import { getLastTradingDays } from './utils/date';
 import { translations } from './utils/i18n';
 
 // Components
-import Header from './components/Header';
-import DecisionCard from './components/DecisionCard';
-import WhySection from './components/WhySection';
-import PriceChart from './components/PriceChart';
-import StrategyState from './components/StrategyState';
-import TradeLog from './components/TradeLog';
-import FetchResultModal from './components/FetchResultModal';
-import SettingsModal from './components/SettingsModal';
-import TradeLogModal from './components/TradeLogModal';
-import CompletedCyclesModal from './components/CompletedCyclesModal';
-import AmmoMagazine from './components/AmmoMagazine';
-import ErrorBoundary from './components/ErrorBoundary';
-import ConfirmModal from './components/ConfirmModal';
-import AccessCodeGuard from './components/AccessCodeGuard';
-import MobileNav from './components/MobileNav';
+import Header from './components/Header.jsx';
+import DecisionCard from './components/DecisionCard.jsx';
+import WhySection from './components/WhySection.jsx';
+import PriceChart from './components/PriceChart.jsx';
+import StrategyState from './components/StrategyState.jsx';
+import TradeLog from './components/TradeLog.jsx';
+import FetchResultModal from './components/FetchResultModal.jsx';
+import SettingsModal from './components/SettingsModal.jsx';
+import TradeLogModal from './components/TradeLogModal.jsx';
+import CompletedCyclesModal from './components/CompletedCyclesModal.jsx';
+import AmmoMagazine from './components/AmmoMagazine.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
+import ConfirmModal from './components/ConfirmModal.jsx';
+import AccessCodeGuard from './components/AccessCodeGuard.jsx';
+import MobileNav from './components/MobileNav.jsx';
 
 function App() {
     // State
