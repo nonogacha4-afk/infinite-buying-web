@@ -14,7 +14,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                 <div className="mobile-hide" style={{ height: '32px', width: '1px', background: 'var(--border-light)', margin: '0 16px', opacity: 0.5 }}></div>
                 <div className="brand-logo">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em' }}>臾댄븳留ㅻℓ湲곕쾿</span>
+                        <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--calm-white)', letterSpacing: '-0.02em' }}>{t('system_name_short')}</span>
                         <span style={{
                             fontSize: '0.65rem',
                             fontWeight: '900',
@@ -35,7 +35,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
 
             <div className="top-bar-right" style={{ display: 'flex', alignItems: 'center' }}>
                 <div className="header-search-group" style={{ gap: '16px', display: 'flex', alignItems: 'center' }}>
-                    <div className={`ticker-selector-wrapper help-label-custom pos-bottom ${isLocked ? 'is-locked' : ''}`} data-tooltip={isLocked ? t('isLockedTooltip') : '醫낅ぉ ?좏깮'}>
+                    <div className={`ticker-selector-wrapper help-label-custom pos-bottom ${isLocked ? 'is-locked' : ''}`} data-tooltip={isLocked ? t('isLockedTooltip') : t('selectTicker')}>
                         <select
                             className="ticker-selector"
                             style={{ padding: '8px 12px', borderRadius: '8px', background: 'var(--bg-glass)', fontSize: '0.9rem' }}
@@ -90,7 +90,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                         className="btn-lang-toggle help-label-custom pos-bottom"
                         style={{ height: '34px', minWidth: '42px', borderRadius: '8px' }}
                         onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-                        data-tooltip={language === 'ko' ? 'Switch to English' : '?쒓뎅?대줈 蹂寃?}
+                        data-tooltip={language === 'ko' ? t('switch_en') : t('switch_ko')}
                     >
                         {language === 'ko' ? 'EN' : 'KO'}
                     </button>
