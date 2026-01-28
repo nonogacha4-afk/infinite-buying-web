@@ -36,7 +36,7 @@ const TodayAction = ({ signal, orders, rsi, prevClose, currentPrice, t }) => {
                                 </div>
                                 <div className="detail-item highlighted">
                                     <span className="detail-label">AMOUNT</span>
-                                    <span className="detail-value">??(mainOrder?.quantity * currentPrice * 1465 / currentPrice).toLocaleString()}</span>
+                                    <span className="detail-value">{t('currency_krw')}{(mainOrder?.quantity * currentPrice * 1465 / currentPrice).toLocaleString()}</span>
                                 </div>
                             </div>
                         )}
