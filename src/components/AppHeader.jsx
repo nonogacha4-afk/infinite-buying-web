@@ -1,6 +1,6 @@
 import React from 'react';
 
-// V3.0 Galaxy Fold6 Optimization Build
+// V3.1 Galaxy Fold6 Optimization Build
 const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, onSettings, onViewHistory, t }) => {
     return (
         <header className="top-bar glass">
@@ -23,7 +23,7 @@ const Header = ({ language, setLanguage, ticker, setTicker, isLocked, onFetch, o
                             padding: '1px 6px',
                             borderRadius: '4px',
                             letterSpacing: '0.05em'
-                        }}>V3.0</span>
+                        }}>V3.1</span>
                     </div>
                     <span className="brand-subtitle mobile-hide" style={{ fontSize: '0.55rem', opacity: 0.7 }}>INFINITE BUYING SYSTEM</span>
                 </div>
