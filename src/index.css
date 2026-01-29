@@ -115,13 +115,19 @@ html {
 .top-bar-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    /* Reduced from 10px */
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .brand-logo {
     display: flex;
     flex-direction: column;
     line-height: 1.1;
+    white-space: nowrap;
+    /* Prevent vertical wrapping */
+    overflow: hidden;
 }
 
 .brand-accent {
@@ -280,6 +286,8 @@ html {
 
 .supporting-values {
     display: flex;
+    flex-wrap: wrap;
+    /* Prevent X-axis overflow */
     gap: var(--p3);
     margin-top: var(--p2);
     justify-content: flex-start;
@@ -2301,20 +2309,39 @@ html {
     }
 
     .btn-fetch {
-        padding: 6px 12px !important;
-        font-size: 0.75rem !important;
+        padding: 6px 10px !important;
+        font-size: 0.7rem !important;
+    }
+
+    .header-util-group {
+        gap: 8px !important;
+    }
+
+    .header-creator-badge {
+        display: none !important;
+        /* Hide to save space */
     }
 
     .decision-card {
         flex-direction: column !important;
-        padding: 45px 20px 24px 20px !important;
+        padding: 45px 16px 24px 16px !important;
+        /* Reduced side padding (20px -> 16px) */
         gap: 20px !important;
         align-items: flex-start !important;
     }
 
+    .supporting-values {
+        gap: 12px !important;
+        /* Narrower gap for mobile */
+        width: 100%;
+    }
+
     .primary-action {
-        font-size: 3.2rem !important;
+        font-size: 2.5rem !important;
+        /* Reduced from 3.2rem to fit narrow screens */
         line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
     }
 
     .right-column-group {
@@ -2379,10 +2406,42 @@ html {
     }
 }
 
-/* Specific Height adjustment for Fold6 Outer (Very Tall) */
-@media (max-aspect-ratio: 1/2) {
+/* Specific Height adjustment for Fold6 Outer (Very Tall & Narrow) */
+@media (max-aspect-ratio: 1/2),
+(max-width: 380px) {
+    .brand-logo {
+        display: none !important;
+    }
+
     .primary-action {
-        font-size: 3.5rem !important;
+        font-size: 1.8rem !important;
+        /* Aggressive reduction for Fold6 */
+    }
+
+    .decision-card {
+        padding: 32px 12px 20px 12px !important;
+    }
+
+    .support-item input {
+        font-size: 1.2rem !important;
+        width: 70px !important;
+    }
+
+    .support-label {
+        font-size: 0.65rem !important;
+    }
+
+    .support-val {
+        font-size: 1.2rem !important;
+    }
+
+    .btn-search-trigger span {
+        display: none !important;
+        /* Icon only */
+    }
+
+    .top-bar-right {
+        gap: 6px !important;
     }
 
     .mobile-tab-content {
