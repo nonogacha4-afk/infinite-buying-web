@@ -47,6 +47,36 @@ body {
     color: var(--calm-white);
     font-family: var(--font-main);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* Prevent unwanted horizontal scroll globally */
+    width: 100vw;
+}
+
+/* --- PREMIUM DARK SCROLLBAR UI --- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Modern browsers scrollbar styling */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.2);
 }
 
 .app-shell {
@@ -312,7 +342,7 @@ body {
     align-items: center;
 }
 
-/* Premium Mode Badge with Golden Ratio */
+/* Premium Mode Badge with V3.0 Standard */
 .premium-mode-badge {
     position: relative;
     padding: 10px 20px;
@@ -416,38 +446,7 @@ body {
 /* Using --p1, --p2 which are golden ratio based (8 * phi^n) */
 
 
-.btn-primary-action {
-    flex: 0 0 calc(50% - (var(--p1) / 2));
-    /* Exactly match reset button width */
-    border: none;
-    height: 80px;
-    /* Aligned with badge height */
-    border-radius: 12px;
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 900;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.btn-primary-action.fire {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
-}
-
-.btn-primary-action.defense {
-    background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
-    color: white;
-    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
-}
-
-.btn-primary-action.soul-escape {
-    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
-    color: white;
-    box-shadow: 0 8px 16px rgba(167, 139, 250, 0.3);
-}
+/* Consolidated Primary Action Styles */
 
 .text-buy {
     color: var(--action-buy);
@@ -481,26 +480,101 @@ body {
     transform: scale(0.96);
 }
 
+.right-column-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 13px;
+    /* Golden Ratio gap */
+    min-width: 320px;
+}
+
+.action-button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 13px;
+}
+
+.premium-mode-badge {
+    height: 80px;
+    /* Adjusted for Phi balance */
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    /* Restore tooltip visibility */
+    background: rgba(45, 55, 72, 0.4);
+    border: 1px solid var(--border-light);
+}
+
+.btn-primary-action {
+    height: 120px;
+    /* Maximum Volume for Desktop */
+    border-radius: 24px;
+    font-size: 1.6rem;
+    font-weight: 950;
+    letter-spacing: 0.05em;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-primary-action.fire {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary-action.soul-escape {
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary-action:hover:not(.disabled) {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-primary-action.is-failed {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: var(--action-danger);
+    box-shadow: none;
+}
+
 .utility-actions-row {
     display: flex;
     justify-content: flex-end;
-    margin-top: var(--u);
-    /* Small gap between rows */
+    gap: 13px;
+    /* Golden Ratio gap */
+    margin-top: 5px;
 }
 
 .btn-secondary-reset {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--calm-gray);
     border: 1px solid var(--border-light);
-    border-radius: 8px;
-    padding: 10px 20px;
-    width: calc(50% - (var(--p1) / 2));
-    /* Perfectly aligns with fire button above */
+    border-radius: 14px;
+    padding: 14px;
+    width: calc(50% - 7px);
     font-family: var(--font-display);
-    font-size: 0.7rem;
-    font-weight: 800;
+    font-size: 0.9rem;
+    font-weight: 750;
     cursor: pointer;
-    text-transform: uppercase;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-secondary-reset:hover {
@@ -756,6 +830,8 @@ body {
     display: grid;
     grid-template-columns: 360px 1fr;
     gap: var(--p3);
+    align-items: stretch;
+    /* Match heights of strategy state and chart */
 }
 
 .state-panel {
@@ -763,6 +839,9 @@ body {
     border-radius: 16px;
     padding: var(--p2);
     border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .state-row {
@@ -821,6 +900,9 @@ body {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .insight-panel:hover {
@@ -1040,6 +1122,28 @@ body {
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--calm-white) !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--action-buy) !important;
+}
+
+.btn-ghost:active {
+    transform: scale(0.95);
+}
+
 /* MODALS - REBUILT */
 .modal-backdrop {
     position: fixed;
@@ -1060,10 +1164,14 @@ body {
     border: 1px solid var(--border-light);
     border-radius: 20px;
     width: 90%;
-    max-width: 650px;
+    max-width: 1000px;
+    max-height: 90vh;
+    /* Added max-height for better scroll control */
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
     animation: modal-show 0.4s ease-out;
-    overflow: hidden;
+    display: flex;
+    /* Flex box for internal scrolling */
+    flex-direction: column;
 }
 
 @keyframes modal-show {
@@ -1104,6 +1212,62 @@ body {
 
 .modal-body {
     padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+    /* Allow body to grow and scroll */
+}
+
+/* Cycle Card (Mobile) */
+.cycle-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--calm-gray);
+}
+
+.cycle-card.is-positive {
+    border-left-color: var(--action-buy);
+}
+
+.cycle-card.is-negative {
+    border-left-color: var(--action-sell);
+}
+
+.cycle-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.cycle-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.cycle-card-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cycle-card-label {
+    font-size: 0.65rem;
+    color: var(--calm-gray);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cycle-card-val {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.desktop-hide {
+    display: none;
 }
 
 .modal-footer {
@@ -1300,6 +1464,96 @@ body {
     padding: 4px 10px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* CHART ZOOM CONTROLS (V2.9.0 - Golden Ratio Optimized) */
+.chart-zoom-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    /* Golden Ratio Approximation (8 * 1.618) */
+    align-items: center;
+    margin-left: 13px;
+}
+
+.zoom-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.zoom-group:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(30, 41, 59, 0.85);
+}
+
+.zoom-group-label {
+    font-size: 0.55rem;
+    color: var(--calm-gray);
+    text-align: center;
+    padding: 0 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    text-transform: uppercase;
+}
+
+.zoom-btn {
+    background: transparent;
+    border: none;
+    color: var(--calm-white);
+    width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zoom-btn:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.zoom-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--action-buy);
+}
+
+.zoom-btn:active {
+    background: rgba(59, 130, 246, 0.4);
+    transform: scale(0.92);
+}
+
+.zoom-btn svg {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.zoom-btn:hover svg {
+    opacity: 1;
+}
+
+/* Header Group Alignment */
+.chart-header-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-bottom: 21px;
+    /* Golden Ratio 13 * 1.618 */
 }
 
 /* PREMIUM CUSTOM TOOLTIP ENGINE */
@@ -1776,8 +2030,15 @@ body {
 
 
 /* PREMIUM CONFIRM MODAL STYLES */
-.confirm-modal-backdrop {
-    z-index: 3000;
+.confirm-modal-backdrop,
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* Ensure it's above everything including nav */
     backdrop-filter: blur(12px) saturate(180%);
     background: rgba(11, 14, 20, 0.7);
     display: flex;
@@ -1786,8 +2047,13 @@ body {
     animation: fade-in 0.3s ease;
 }
 
+.confirm-modal-backdrop {
+    z-index: 10000;
+}
+
 .confirm-modal-content {
-    width: 380px !important;
+    width: 360px !important;
+    max-width: 90% !important;
     background: linear-gradient(145deg, #1e2533 0%, #171c26 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 24px !important;
@@ -1967,6 +2233,10 @@ body {
     .mobile-hide {
         display: none !important;
     }
+
+    .desktop-hide {
+        display: block !important;
+    }
 }
 
 /* Tablet / Fold6 Inner Square View */
@@ -2021,7 +2291,18 @@ body {
     }
 
     .header-search-group {
+        display: flex !important;
+        gap: 8px !important;
+    }
+
+    .ticker-selector {
         display: none !important;
+        /* Hide selector on very small screens to save space */
+    }
+
+    .btn-fetch {
+        padding: 6px 12px !important;
+        font-size: 0.75rem !important;
     }
 
     .decision-card {
@@ -2036,31 +2317,40 @@ body {
         line-height: 1.1;
     }
 
-    .action-button-group {
-        min-width: 100% !important;
+    .right-column-group {
         width: 100% !important;
+        min-width: 0 !important;
+        align-items: stretch !important;
     }
 
-    .primary-actions-row {
-        flex-direction: column !important;
-        gap: 12px !important;
+    .action-button-group {
+        gap: 21px !important;
+        /* Larger Golden Ratio gap for mobile touch */
     }
 
     .btn-primary-action,
     .premium-mode-badge {
         width: 100% !important;
         flex: none !important;
-        height: 64px !important;
-        font-size: 1.1rem !important;
+        height: 72px !important;
+        /* Larger for mobile */
+        font-size: 1.25rem !important;
+        border-radius: 18px !important;
     }
 
     .utility-actions-row {
         justify-content: space-between !important;
         width: 100% !important;
+        gap: 13px !important;
+        margin-top: 0 !important;
     }
 
     .btn-secondary-reset {
-        width: calc(50% - 6px) !important;
+        width: calc(50% - 7px) !important;
+        height: 55px !important;
+        /* Golden ratio related height */
+        font-size: 0.95rem !important;
+        border-radius: 15px !important;
     }
 
     .magazine-inner-grid {
@@ -2076,6 +2366,17 @@ body {
         width: 10px !important;
         height: 20px !important;
     }
+
+    .cockpit-modal {
+        width: 100% !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+    }
+
+    .modal-body {
+        padding: 16px !important;
+    }
 }
 
 /* Specific Height adjustment for Fold6 Outer (Very Tall) */
@@ -2088,12 +2389,15 @@ body {
         gap: 24px;
     }
 }
+
 /* --- MOBILE NAVIGATION & SLIDE UI CORE (V2.8.0) --- */
 
 .mobile-view-container {
     width: 100%;
+    max-width: 100vw;
     overflow: hidden;
     position: relative;
+    box-sizing: border-box;
 }
 
 .mobile-slide-wrapper {
@@ -2112,6 +2416,12 @@ body {
     flex-direction: column;
     gap: 16px;
     min-height: calc(100vh - var(--header-height) - 100px);
+    overflow-y: auto;
+}
+
+.mobile-tab-content .chart-container-panel {
+    min-height: 400px !important;
+    height: 400px !important;
 }
 
 .mobile-nav {
@@ -2154,7 +2464,9 @@ body {
 }
 
 .nav-icon {
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.3s ease;
 }
 
@@ -2170,18 +2482,20 @@ body {
 
 
 /* --- FINAL FOLD6 968x2376 HARD-FIX --- */
-@media screen and (max-width: 480px), screen and (max-aspect-ratio: 1/2) {
+@media screen and (max-width: 480px),
+screen and (max-aspect-ratio: 1/2) {
     .primary-action {
         font-size: 3.5rem !important;
         line-height: 1.0;
         margin-bottom: 8px;
     }
+
     .decision-card {
         padding-top: 50px !important;
     }
+
     .btn-primary-action {
         height: 70px !important;
         font-size: 1.2rem !important;
     }
 }
-
