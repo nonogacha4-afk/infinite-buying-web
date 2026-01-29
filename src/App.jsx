@@ -505,7 +505,8 @@ function App() {
                     ticker: ticker,
                     totalInvestedKrw: totalInvestedKrw,
                     profitKrw: totalProfitKrw,
-                    profitRate: profitRate,
+                    profitRate: totalInvestedKrw > 0 ? (totalProfitKrw / totalInvestedKrw) * 100 : 0, // ROE
+                    roi: strategyConfig.totalCapital > 0 ? (totalProfitKrw / strategyConfig.totalCapital) * 100 : 0, // ROI
                     turns: turn,
                     isCompleted: currentHoldings === 0,
                     isFailed: signal.status === 'FAILED' || (currentHoldings > 0 && signal.status !== 'SELL')
@@ -799,108 +800,123 @@ function App() {
                     </>
                 ) : (
                     <div className="mobile-view-container">
-                        <div className="mobile-slide-wrapper" style={{ transform: `translateX(${activeTab === 'TRADING' ? '0%' : activeTab === 'CHART' ? '-100%' : '-200%'})` }}>
-                            {/* TAB 1: TRADING */}
+                        <div className="mobile-slide-wrapper" style={{ transform: `translateX(${activeTab === 'TRADING' ? '0%' : activeTab === 'CHART' ? '-33.333%' : '-66.666%'})` }}>
+                            {/* TAB 1: TRADING (매매전략) */}
                             <div className="mobile-tab-content">
-                                <DecisionCard
-                                    status={signal.status}
-                                    currentMode={currentMode}
-                                    multiplier={sellingOrders.length > 0 ? '1.0' : signal.multiplier}
-                                    amount={sellingOrders.length > 0
-                                        ? (sellingOrders[0].quantity * sellingOrders[0].price * strategyConfig.fxKrwUsd)
-                                        : (orders.length > 0 ? Math.max(1, orders[0].quantity * orders[0].price * strategyConfig.fxKrwUsd) : 0)
-                                    }
-                                    price={sellingOrders.length > 0 ? sellingOrders[0].price : (orders.length > 0 ? orders[0].price : currentPrice)}
-                                    onExecute={handleExecute}
-                                    onReset={handleReset}
-                                    onUndo={handleUndo}
-                                    onViewHistory={() => setShowCycleHistoryModal(true)}
-                                    onRefresh={handleRefreshData}
-                                    isRefreshing={isRefreshing}
-                                    refreshSuccess={refreshSuccess}
-                                    lastUpdated={lastUpdated}
-                                    metrics={metrics}
-                                    turn={turn}
-                                    totalSlots={strategyConfig.totalSlots}
-                                    exposure={metrics.currentExposure}
-                                    overridePrice={overridePrice}
-                                    setOverridePrice={setOverridePrice}
-                                    overrideQty={overrideQty}
-                                    setOverrideQty={setOverrideQty}
-                                    fx={strategyConfig.fxKrwUsd}
-                                    capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
-                                    orderQty={sellingOrders.length > 0
-                                        ? sellingOrders[0].quantity
-                                        : (orders.length > 0 ? Math.max(1, orders[0].quantity) : 0)
-                                    }
-                                    t={t}
-                                />
-                                <WhySection
-                                    rsi={rsi}
-                                    gapDrop={prevClose > 0 ? (((currentPrice - prevClose) / prevClose) * 100).toFixed(1) : 0}
-                                    belowAvg={currentPrice < (strategyConfig.avgPrice || currentPrice)}
-                                    triggerHit={signal.status === 'TRIGGERED'}
-                                    defenseReason={metrics.defenseReason}
-                                    currentPrice={currentPrice}
-                                    avgPrice={strategyConfig.avgPrice || 0}
-                                    profitRate={strategyConfig.avgPrice > 0 ? (((currentPrice - strategyConfig.avgPrice) / strategyConfig.avgPrice) * 100) : 0}
-                                    totalHoldings={tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (Number(curr.qty) || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (Number(curr.qty) || 0), 0)}
-                                    t={t}
-                                />
+                                <ErrorBoundary>
+                                    <DecisionCard
+                                        status={signal.status}
+                                        currentMode={currentMode}
+                                        multiplier={sellingOrders.length > 0 ? '1.0' : signal.multiplier}
+                                        amount={sellingOrders.length > 0
+                                            ? (sellingOrders[0].quantity * sellingOrders[0].price * strategyConfig.fxKrwUsd)
+                                            : (orders.length > 0 ? Math.max(1, orders[0].quantity * orders[0].price * strategyConfig.fxKrwUsd) : 0)
+                                        }
+                                        price={sellingOrders.length > 0 ? sellingOrders[0].price : (orders.length > 0 ? orders[0].price : currentPrice)}
+                                        onExecute={handleExecute}
+                                        onReset={handleReset}
+                                        onUndo={handleUndo}
+                                        onViewHistory={() => setShowCycleHistoryModal(true)}
+                                        onRefresh={handleRefreshData}
+                                        isRefreshing={isRefreshing}
+                                        refreshSuccess={refreshSuccess}
+                                        lastUpdated={lastUpdated}
+                                        metrics={metrics}
+                                        turn={turn}
+                                        totalSlots={strategyConfig.totalSlots}
+                                        exposure={metrics.currentExposure}
+                                        overridePrice={overridePrice}
+                                        setOverridePrice={setOverridePrice}
+                                        overrideQty={overrideQty}
+                                        setOverrideQty={setOverrideQty}
+                                        fx={strategyConfig.fxKrwUsd}
+                                        capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
+                                        orderQty={sellingOrders.length > 0
+                                            ? sellingOrders[0].quantity
+                                            : (orders.length > 0 ? Math.max(1, orders[0].quantity) : 0)
+                                        }
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
+                                <ErrorBoundary>
+                                    <WhySection
+                                        rsi={rsi}
+                                        gapDrop={prevClose > 0 ? (((currentPrice - prevClose) / prevClose) * 100).toFixed(1) : 0}
+                                        belowAvg={currentPrice < (strategyConfig.avgPrice || currentPrice)}
+                                        triggerHit={signal.status === 'TRIGGERED'}
+                                        defenseReason={metrics.defenseReason}
+                                        currentPrice={currentPrice}
+                                        avgPrice={strategyConfig.avgPrice || 0}
+                                        profitRate={strategyConfig.avgPrice > 0 ? (((currentPrice - strategyConfig.avgPrice) / strategyConfig.avgPrice) * 100) : 0}
+                                        totalHoldings={tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (Number(curr.qty) || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (Number(curr.qty) || 0), 0)}
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
                             </div>
 
-                            {/* TAB 2: CHART */}
+                            {/* TAB 2: CHART (차트분석) */}
                             <div className="mobile-tab-content">
-                                <PriceChart
-                                    history={history}
-                                    currentPrice={currentPrice}
-                                    avgPrice={strategyConfig.avgPrice || 0}
-                                    targetPct={strategyConfig.tp1Trigger || 10}
-                                    ticker={ticker}
-                                    t={t}
-                                />
-                                <AmmoMagazine
-                                    config={strategyConfig}
-                                    currentTurn={turn}
-                                    investedCapital={tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0)}
-                                    capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
-                                    slotAmount={metrics.slotAmount}
-                                    tradeLogs={tradeLogs}
-                                    onRevive={handleUndo}
-                                    history={history}
-                                    t={t}
-                                />
+                                <ErrorBoundary>
+                                    <PriceChart
+                                        history={history}
+                                        currentPrice={currentPrice}
+                                        avgPrice={strategyConfig.avgPrice || 0}
+                                        targetPct={strategyConfig.tp1Trigger || 10}
+                                        ticker={ticker}
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
+                                <ErrorBoundary>
+                                    <AmmoMagazine
+                                        config={strategyConfig}
+                                        currentTurn={turn}
+                                        investedCapital={tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0)}
+                                        capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
+                                        slotAmount={metrics.slotAmount}
+                                        tradeLogs={tradeLogs}
+                                        onRevive={handleUndo}
+                                        history={history}
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
                             </div>
 
-                            {/* TAB 3: HISTORY */}
+                            {/* TAB 3: HISTORY (전체기록) */}
                             <div className="mobile-tab-content">
-                                <StrategyState
-                                    ticker={ticker}
-                                    turn={turn}
-                                    maxTurns={strategyConfig.totalSlots}
-                                    slotsUsed={turn}
-                                    avgPrice={strategyConfig.avgPrice}
-                                    capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
-                                    exposure={metrics.currentExposure}
-                                    mdd={metrics.mdd || 0}
-                                    fx={strategyConfig.fxKrwUsd}
-                                    triggerPct={Math.abs(strategyConfig.gapDropThreshold)}
-                                    totalCapital={strategyConfig.totalCapital}
-                                    defenseMode={metrics.isDefense}
-                                    currentPrice={currentPrice}
-                                    nextSlotAmount={metrics.slotAmount}
-                                    t={t}
-                                />
-                                <TradeLog
-                                    logs={tradeLogs}
-                                    onDelete={handleDeleteLog}
-                                    onViewAll={() => setShowHistoryModal(true)}
-                                    currentPrice={currentPrice}
-                                    avgPrice={strategyConfig.avgPrice || 0}
-                                    fx={strategyConfig.fxKrwUsd}
-                                    totalCapital={strategyConfig.totalCapital}
-                                    t={t}
-                                />
+                                <ErrorBoundary>
+                                    <StrategyState
+                                        ticker={ticker}
+                                        turn={turn}
+                                        maxTurns={strategyConfig.totalSlots}
+                                        slotsUsed={turn}
+                                        avgPrice={strategyConfig.avgPrice}
+                                        capitalRemaining={strategyConfig.totalCapital - (tradeLogs.filter(l => l.side === 'BUY').reduce((acc, curr) => acc + (curr.amount || 0), 0) - tradeLogs.filter(l => l.side === 'SELL').reduce((acc, curr) => acc + (curr.amount || 0), 0))}
+                                        exposure={metrics.currentExposure}
+                                        mdd={metrics.mdd || 0}
+                                        fx={strategyConfig.fxKrwUsd}
+                                        triggerPct={Math.abs(strategyConfig.gapDropThreshold)}
+                                        totalCapital={strategyConfig.totalCapital}
+                                        defenseMode={metrics.isDefense}
+                                        currentPrice={currentPrice}
+                                        nextSlotAmount={metrics.slotAmount}
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
+                                <ErrorBoundary>
+                                    <TradeLog
+                                        logs={tradeLogs}
+                                        onDelete={handleDeleteLog}
+                                        onViewAll={() => {
+                                            console.log('View All History Clicked');
+                                            setShowHistoryModal(true);
+                                        }}
+                                        currentPrice={currentPrice}
+                                        avgPrice={strategyConfig.avgPrice || 0}
+                                        fx={strategyConfig.fxKrwUsd}
+                                        totalCapital={strategyConfig.totalCapital}
+                                        t={t}
+                                    />
+                                </ErrorBoundary>
                                 <div style={{ height: '80px' }}></div> {/* Spacer for bottom nav */}
                             </div>
                         </div>
