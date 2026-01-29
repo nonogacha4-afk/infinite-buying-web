@@ -1,7 +1,7 @@
 @echo off
 setlocal
 echo ===================================================
-echo   AUTOMATED GITHUB SYNC TOOL (V3.1)
+echo   AUTOMATED GITHUB SYNC TOOL (V3.2)
 echo ===================================================
 echo.
 
@@ -20,8 +20,8 @@ git pull origin main --rebase
 :: 3. Add and Commit
 echo [INFO] Staging changes...
 git add .
-echo [INFO] Committing changes (V3.1 Layout & Fold6 Fixes)...
-git commit -m "Automated Update: Upgrade to V3.1 - Layout Precision & Fold6 Fixes"
+echo [INFO] Committing changes (V3.2 Layout Precision Fixes)...
+git commit -m "Automated Update: Upgrade to V3.2 - Precision Layout Fixes for Fold6"
 
 :: 4. Push
 echo [INFO] Pushing to GitHub...
