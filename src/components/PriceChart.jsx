@@ -10,6 +10,7 @@ import {
     ResponsiveContainer,
     ReferenceLine
 } from 'recharts';
+import { Plus, Minus, Maximize2, Minimize2 } from 'lucide-react';
 
 const PriceChart = ({ history, currentPrice, avgPrice, targetPct, ticker, t }) => {
     // Mode: Always Price on Left. Optional Profit on Right if avgPrice > 0.
@@ -29,6 +30,23 @@ const PriceChart = ({ history, currentPrice, avgPrice, targetPct, ticker, t }) =
     // ZOOM STATE
     const [visibleCount, setVisibleCount] = useState(30);
     const [yZoomLevel, setYZoomLevel] = useState(0.05); // 5% padding by default
+
+    // ZOOM HANDLERS
+    const handleXZoom = (direction) => {
+        const zoomStep = Math.max(1, Math.floor(visibleCount * 0.2));
+        setVisibleCount(prev => {
+            let next = direction === 'in' ? prev - zoomStep : prev + zoomStep;
+            return Math.min(fullData.length, Math.max(8, next));
+        });
+    };
+
+    const handleYZoom = (direction) => {
+        setYZoomLevel(prev => {
+            const step = Math.max(0.0001, prev * 0.2);
+            let next = direction === 'in' ? prev - step : prev + step;
+            return Math.min(2.0, Math.max(0.001, next));
+        });
+    };
 
     // Prepare full dataset
     const fullData = useMemo(() => {
@@ -50,16 +68,6 @@ const PriceChart = ({ history, currentPrice, avgPrice, targetPct, ticker, t }) =
                 };
             });
 
-        const currentPnl = hasAvg ? (((currentPrice - avgPrice) / avgPrice) * 100) : 0;
-        if (currentPrice > 0) {
-            data.push({
-                date: `LIVE-${Date.now()}`, // Unique key
-                displayDate: 'LIVE',
-                price: currentPrice,
-                profit: isFinite(currentPnl) ? currentPnl : 0,
-                isLive: true
-            });
-        }
         return data;
     }, [history, currentPrice, avgPrice, hasAvg]);
 
@@ -89,25 +97,15 @@ const PriceChart = ({ history, currentPrice, avgPrice, targetPct, ticker, t }) =
             const isYArea = mouseX < 55 || mouseX > rect.width - 55;
 
             if (isYArea && !isXArea) {
-                // ZOOM Y: Adjust Padding Level
-                setYZoomLevel(prev => {
-                    const step = Math.max(0.0001, prev * 0.2);
-                    let next = delta > 0 ? prev + step : prev - step;
-                    return Math.min(2.0, Math.max(0.001, next));
-                });
+                handleYZoom(delta > 0 ? 'out' : 'in');
             } else {
-                // ZOOM X (Default): Adjust Visible Count
-                const zoomStep = Math.max(1, Math.floor(visibleCount * 0.15));
-                setVisibleCount(prev => {
-                    let next = delta > 0 ? prev + zoomStep : prev - zoomStep;
-                    return Math.min(fullData.length, Math.max(8, next));
-                });
+                handleXZoom(delta > 0 ? 'out' : 'in');
             }
         };
 
         el.addEventListener('wheel', onWheel, { passive: false });
         return () => el.removeEventListener('wheel', onWheel);
-    }, [fullData.length, visibleCount]);
+    }, [fullData.length, visibleCount, yZoomLevel]);
 
     const currentPnl = hasAvg ? (((currentPrice - avgPrice) / avgPrice) * 100) : 0;
     const isPositive = currentPnl >= 0;
@@ -146,20 +144,41 @@ const PriceChart = ({ history, currentPrice, avgPrice, targetPct, ticker, t }) =
 
     if (fullData.length === 0) {
         return (
-            <div className="insight-panel chart-container-panel" style={{ height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="insight-panel chart-container-panel" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(25, 31, 44, 0.4)' }}>
                 <span style={{ color: 'var(--calm-gray)' }}>Waiting for market data...</span>
             </div>
         );
     }
 
     return (
-        <div className="insight-panel chart-container-panel" style={{ height: '100%', minHeight: '380px' }}>
+        <div className="insight-panel chart-container-panel" style={{ background: 'rgba(25, 31, 44, 0.4)', position: 'relative', display: 'flex', flexDirection: 'column' }}>
             <div className="insight-title chart-header-group">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span>{ticker} {hasAvg ? t('profitTrend') : t('priceTrend')}</span>
                     <span style={{ fontSize: '1.2rem', color: 'var(--calm-white)', fontWeight: '700' }}>
                         ${(Number(currentPrice) || 0).toFixed(2)}
                     </span>
+                    {/* Floating Zoom Controls moved to Header */}
+                    <div className="chart-zoom-controls">
+                        <div className="zoom-group">
+                            <div className="zoom-group-label">TIME</div>
+                            <button className="zoom-btn" onClick={() => handleXZoom('in')} title="Zoom In X">
+                                <Plus size={16} />
+                            </button>
+                            <button className="zoom-btn" onClick={() => handleXZoom('out')} title="Zoom Out X">
+                                <Minus size={16} />
+                            </button>
+                        </div>
+                        <div className="zoom-group">
+                            <div className="zoom-group-label">PRICE</div>
+                            <button className="zoom-btn" onClick={() => handleYZoom('in')} title="Zoom In Y">
+                                <Maximize2 size={14} />
+                            </button>
+                            <button className="zoom-btn" onClick={() => handleYZoom('out')} title="Zoom Out Y">
+                                <Minimize2 size={14} />
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 {hasAvg && (
                     <div className={`pnl-badge ${isPositive ? 'positive' : 'negative'}`}>
