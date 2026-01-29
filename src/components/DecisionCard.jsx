@@ -51,9 +51,8 @@ const DecisionCard = (props) => {
             <div className={`decision-card ${status === 'SOUL_ESCAPE' ? 'is-soul-mode' : ''} ${isLackingCapital ? 'is-locked-capital' : ''}`}>
                 <div className="meta-control-group">
                     <button
-                        className={`btn-refresh-data help-label-custom pos-center ${props.isRefreshing ? 'spinning' : ''} ${props.refreshSuccess ? 'success' : ''}`}
+                        className={`btn-refresh-data ${props.isRefreshing ? 'spinning' : ''} ${props.refreshSuccess ? 'success' : ''}`}
                         onClick={props.onRefresh}
-                        data-tooltip={props.isRefreshing ? t('refreshing') : (props.refreshSuccess ? t('refresh_success') : t('refresh_tooltip'))}
                         disabled={props.isRefreshing}
                     >
                         {props.refreshSuccess ? (
@@ -158,8 +157,8 @@ const DecisionCard = (props) => {
                     )}
                 </div>
 
-                <div className="right-column-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px', minWidth: '320px' }}>
-                    <div className="action-button-group" style={{ width: '100%' }}>
+                <div className="right-column-group">
+                    <div className="action-button-group">
                         <div
                             className={`premium-mode-badge help-label-custom pos-center ${status === 'SOUL_ESCAPE' ? 'is-soul' : (currentMode === 'DEFENSE' ? 'is-defense' : 'is-normal')}`}
                             data-tooltip={status === 'SOUL_ESCAPE' ? t('soul_escape_help') : (currentMode === 'DEFENSE' ? t('defense_active_help') : t('standard_protocol_help'))}
@@ -176,14 +175,6 @@ const DecisionCard = (props) => {
                             onClick={status === 'COMPLETED' || status === 'FAILED' || isLackingCapital ? onReset : (!isExecutionDisabled ? onExecute : null)}
                             disabled={isWait}
                             data-tooltip={status === 'FAILED' || isLackingCapital ? t('lacking_capital_warn') : (status === 'COMPLETED' ? t('completed_success') : t('execute_tooltip'))}
-                            style={{
-                                height: '80px',
-                                borderRadius: '16px',
-                                background: status === 'FAILED' || isLackingCapital ? 'rgba(239, 68, 68, 0.15)' : undefined,
-                                border: status === 'FAILED' || isLackingCapital ? '1px solid rgba(239, 68, 68, 0.3)' : 'none',
-                                color: status === 'FAILED' || isLackingCapital ? 'var(--action-danger)' : 'white',
-                                marginTop: '12px'
-                            }}
                         >
                             {status === 'FAILED' || isLackingCapital ? (status === 'FAILED' ? 'ABORT CYCLE' : 'INSUFFICIENT CAPITAL') : (
                                 isWait ? t('wait') :
@@ -191,11 +182,11 @@ const DecisionCard = (props) => {
                             )}
                         </button>
 
-                        <div className="utility-actions-row" style={{ gap: '12px', marginTop: '12px' }}>
-                            <button className="btn-secondary-reset undo help-label-custom pos-center" style={{ borderRadius: '12px' }} onClick={onUndo} data-tooltip={t('undo_tooltip')}>
+                        <div className="utility-actions-row">
+                            <button className="btn-secondary-reset undo help-label-custom pos-center" onClick={onUndo} data-tooltip={t('undo_tooltip')}>
                                 {t('undoBtn')}
                             </button>
-                            <button className="btn-secondary-reset help-label-custom pos-center" style={{ borderRadius: '12px' }} onClick={onReset} data-tooltip={t('reset_tooltip')}>
+                            <button className="btn-secondary-reset help-label-custom pos-center" onClick={onReset} data-tooltip={t('reset_tooltip')}>
                                 {t('resetBtn')}
                             </button>
                         </div>
