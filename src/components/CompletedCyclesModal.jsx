@@ -5,13 +5,13 @@ const CompletedCyclesModal = ({ isOpen, onClose, cycles, onDelete, triggerConfir
 
     return (
         <div className="modal-backdrop">
-            <div className="modal-content cockpit-modal" style={{ maxWidth: '1000px' }}>
+            <div className="modal-content cockpit-modal">
                 <div className="modal-header">
                     <h3 className="modal-title">{t('cycleHistoryTitle')}</h3>
                     <button className="modal-close" onClick={onClose}>&times;</button>
                 </div>
 
-                <div className="modal-body" style={{ maxHeight: '700px', overflowY: 'auto' }}>
+                <div className="modal-body">
 
                     {cycles.length > 0 && (
                         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
@@ -29,88 +29,156 @@ const CompletedCyclesModal = ({ isOpen, onClose, cycles, onDelete, triggerConfir
                         </div>
                     )}
 
-                    <table className="log-table">
-                        <thead>
-                            <tr>
-                                <th>{t('ticker')} / {t('cycleDate')}</th>
-                                <th style={{ textAlign: 'center' }}>{t('cycleStartDate')} ~ {t('cycleEndDate')}</th>
-                                <th style={{ textAlign: 'center' }}>{t('cycleDuration')}</th>
-                                <th style={{ textAlign: 'right' }}>{t('turn')}</th>
-                                <th style={{ textAlign: 'right' }}>{t('summaryInvestment')}</th>
-                                <th style={{ textAlign: 'right' }}>{t('summaryProfitAmount')}</th>
-                                <th style={{ textAlign: 'right' }}>{t('summaryProfitRate')}</th>
-                                <th style={{ textAlign: 'right' }}>{t('orderAction')}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cycles.length > 0 ? cycles.map((cycle, idx) => {
-                                const isPositive = cycle.profitKrw >= 0;
-                                return (
-                                    <tr key={idx}>
-                                        <td>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <div style={{ fontWeight: '700', fontSize: '1rem' }}>{cycle.ticker}</div>
-                                                {cycle.isFailed && (
-                                                    <span style={{
-                                                        fontSize: '0.65rem',
-                                                        background: 'rgba(239, 68, 68, 0.2)',
-                                                        color: '#ef4444',
-                                                        padding: '2px 6px',
-                                                        borderRadius: '4px',
-                                                        fontWeight: '800',
-                                                        border: '1px solid rgba(239, 68, 68, 0.3)'
-                                                    }}>FAILED</span>
-                                                )}
-                                            </div>
-                                            <div style={{ color: 'var(--calm-gray)', fontSize: '0.75rem' }}>{cycle.date} {cycle.endTime}</div>
-                                        </td>
-                                        <td style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '0.85rem' }}>{cycle.startDate || '-'}</div>
-                                            <div style={{ fontSize: '0.85rem', color: 'var(--calm-gray)' }}>~ {cycle.endDate || '-'}</div>
-                                        </td>
-                                        <td style={{ textAlign: 'center', fontWeight: '700' }}>
-                                            {cycle.durationDays || '1'} {t('days')}
-                                        </td>
-                                        <td style={{ textAlign: 'right', fontWeight: '600' }}>{cycle.turns}</td>
-                                        <td style={{ textAlign: 'right' }}>
-                                            {t('currency_krw')}{cycle.totalInvestedKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                                        </td>
-                                        <td style={{
-                                            textAlign: 'right',
-                                            fontWeight: '700',
-                                            color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)'
-                                        }}>
-                                            {isPositive ? '+' : ''}{t('currency_krw')}{cycle.profitKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                                        </td>
-                                        <td style={{
-                                            textAlign: 'right',
-                                            fontWeight: '700',
-                                            color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)'
-                                        }}>
-                                            {isPositive ? '+' : ''}{cycle.profitRate?.toFixed(2)}%
-                                        </td>
-                                        <td style={{ textAlign: 'right' }}>
-                                            <button
-                                                className="modal-close"
-                                                style={{ fontSize: '1rem', padding: '10px', color: 'var(--calm-gray)' }}
-                                                onClick={() => {
-                                                    triggerConfirm(t('deleteLog') + '?', () => onDelete(idx));
-                                                }}
-                                            >
-                                                &times;
-                                            </button>
+                    {/* DESKTOP TABLE VIEW */}
+                    <div className="mobile-hide">
+                        <table className="log-table">
+                            <thead>
+                                <tr>
+                                    <th>{t('ticker')} / {t('cycleDate')}</th>
+                                    <th style={{ textAlign: 'center' }}>{t('cycleStartDate')} ~ {t('cycleEndDate')}</th>
+                                    <th style={{ textAlign: 'center' }}>{t('cycleDuration')}</th>
+                                    <th style={{ textAlign: 'right' }}>{t('turn')}</th>
+                                    <th style={{ textAlign: 'right' }}>{t('summaryInvestment')}</th>
+                                    <th style={{ textAlign: 'right' }}>{t('summaryProfitAmount')}</th>
+                                    <th style={{ textAlign: 'right' }}>{t('summaryProfitRate')} (ROE)</th>
+                                    <th style={{ textAlign: 'right' }}>ROI</th>
+                                    <th style={{ textAlign: 'right' }}>{t('orderAction')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cycles.length > 0 ? cycles.map((cycle, idx) => {
+                                    const isPositive = cycle.profitKrw >= 0;
+                                    return (
+                                        <tr key={idx}>
+                                            <td>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    <div style={{ fontWeight: '700', fontSize: '1rem' }}>{cycle.ticker}</div>
+                                                    {cycle.isFailed && (
+                                                        <span style={{
+                                                            fontSize: '0.65rem',
+                                                            background: 'rgba(239, 68, 68, 0.2)',
+                                                            color: '#ef4444',
+                                                            padding: '2px 6px',
+                                                            borderRadius: '4px',
+                                                            fontWeight: '800',
+                                                            border: '1px solid rgba(239, 68, 68, 0.3)'
+                                                        }}>FAILED</span>
+                                                    )}
+                                                </div>
+                                                <div style={{ color: 'var(--calm-gray)', fontSize: '0.75rem' }}>{cycle.date} {cycle.endTime}</div>
+                                            </td>
+                                            <td style={{ textAlign: 'center' }}>
+                                                <div style={{ fontSize: '0.85rem' }}>{cycle.startDate || '-'}</div>
+                                                <div style={{ fontSize: '0.85rem', color: 'var(--calm-gray)' }}>~ {cycle.endDate || '-'}</div>
+                                            </td>
+                                            <td style={{ textAlign: 'center', fontWeight: '700' }}>
+                                                {cycle.durationDays || '1'} {t('days')}
+                                            </td>
+                                            <td style={{ textAlign: 'right', fontWeight: '600' }}>{cycle.turns}</td>
+                                            <td style={{ textAlign: 'right' }}>
+                                                {t('currency_krw')}{cycle.totalInvestedKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                            </td>
+                                            <td style={{
+                                                textAlign: 'right',
+                                                fontWeight: '700',
+                                                color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)'
+                                            }}>
+                                                {isPositive ? '+' : ''}{t('currency_krw')}{cycle.profitKrw?.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                            </td>
+                                            <td style={{
+                                                textAlign: 'right',
+                                                fontWeight: '700',
+                                                color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)'
+                                            }}>
+                                                {isPositive ? '+' : ''}{cycle.profitRate?.toFixed(2)}%
+                                            </td>
+                                            <td style={{
+                                                textAlign: 'right',
+                                                fontSize: '0.8rem',
+                                                color: isPositive ? 'rgba(59, 130, 246, 0.7)' : 'rgba(239, 68, 68, 0.7)'
+                                            }}>
+                                                {isPositive ? '+' : ''}{cycle.roi?.toFixed(2)}%
+                                            </td>
+                                            <td style={{ textAlign: 'right' }}>
+                                                <button
+                                                    className="modal-close"
+                                                    style={{ fontSize: '1rem', padding: '10px', color: 'var(--calm-gray)' }}
+                                                    onClick={() => {
+                                                        triggerConfirm(t('deleteLog') + '?', () => onDelete(idx));
+                                                    }}
+                                                >
+                                                    &times;
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                }) : (
+                                    <tr>
+                                        <td colSpan="9" style={{ textAlign: 'center', padding: '60px', color: 'var(--calm-gray)' }}>
+                                            {t('noOrders')}
                                         </td>
                                     </tr>
-                                );
-                            }) : (
-                                <tr>
-                                    <td colSpan="6" style={{ textAlign: 'center', padding: '60px', color: 'var(--calm-gray)' }}>
-                                        {t('noOrders')}
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* MOBILE CARD VIEW */}
+                    <div className="desktop-hide">
+                        {cycles.length > 0 ? cycles.map((cycle, idx) => {
+                            const isPositive = cycle.profitKrw >= 0;
+                            return (
+                                <div key={idx} className={`cycle-card ${isPositive ? 'is-positive' : 'is-negative'}`}>
+                                    <div className="cycle-card-header">
+                                        <div>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <span style={{ fontWeight: '800', fontSize: '1.1rem' }}>{cycle.ticker}</span>
+                                                {cycle.isFailed && <span style={{ fontSize: '0.6rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', padding: '1px 4px', borderRadius: '3px', fontWeight: '900' }}>FAILED</span>}
+                                            </div>
+                                            <div style={{ fontSize: '0.7rem', color: 'var(--calm-gray)', marginTop: '2px' }}>{cycle.date} {cycle.endTime}</div>
+                                        </div>
+                                        <button
+                                            className="modal-close"
+                                            style={{ padding: '0 5px', fontSize: '1.2rem', color: 'var(--calm-gray)' }}
+                                            onClick={() => triggerConfirm(t('deleteLog') + '?', () => onDelete(idx))}
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+
+                                    <div className="cycle-card-grid">
+                                        <div className="cycle-card-item">
+                                            <span className="cycle-card-label">{t('cycleDuration')}</span>
+                                            <span className="cycle-card-val">{cycle.durationDays || '1'} {t('days')} ({cycle.turns}T)</span>
+                                        </div>
+                                        <div className="cycle-card-item">
+                                            <span className="cycle-card-label">{t('summaryInvestment')}</span>
+                                            <span className="cycle-card-val">{t('currency_krw')}{cycle.totalInvestedKrw?.toLocaleString()}</span>
+                                        </div>
+                                        <div className="cycle-card-item">
+                                            <span className="cycle-card-label">{t('summaryProfitAmount')}</span>
+                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)' }}>
+                                                {isPositive ? '+' : ''}{t('currency_krw')}{cycle.profitKrw?.toLocaleString()}
+                                            </span>
+                                        </div>
+                                        <div className="cycle-card-item">
+                                            <span className="cycle-card-label">ROE / ROI</span>
+                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)' }}>
+                                                {isPositive ? '+' : ''}{cycle.profitRate?.toFixed(2)}% / {cycle.roi?.toFixed(2)}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div style={{ marginTop: '12px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: 'var(--calm-gray)', textAlign: 'center' }}>
+                                        {cycle.startDate} ~ {cycle.endDate}
+                                    </div>
+                                </div>
+                            );
+                        }) : (
+                            <div style={{ textAlign: 'center', padding: '40px', color: 'var(--calm-gray)' }}>
+                                {t('noOrders')}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className="modal-footer">
