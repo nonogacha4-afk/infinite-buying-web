@@ -358,7 +358,9 @@ function App() {
                 throw new Error('historyData is empty or invalid format');
             }
         } catch (error) {
-            console.warn('API Error, falling back to Simulation Mode:', error.message);
+            const isConnectionFail = error.message.includes('failed') || error.message.includes('Fetch');
+            console.warn(`[Data Load] API Error (${error.message}), falling back to Simulation Mode.`);
+
             const generatedHistory = generateMarketData(targetTicker);
             setIsSimulationMode(true);
 
@@ -370,6 +372,9 @@ function App() {
                 setRsi(lastEOD.rsi);
                 setHistory(generatedHistory);
             }
+
+            // Optional: You could set a specific state here to show a toast or banner
+            // e.g., setApiError(isConnectionFail ? 'Connection Fail' : 'Data Error');
         }
         setLastUpdated(new Date());
 
