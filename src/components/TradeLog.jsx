@@ -67,62 +67,105 @@ const TradeLog = ({ logs, onDelete, onViewAll, currentPrice, avgPrice, fx, total
                 </div>
             )}
 
-            <table className="log-table">
-                <thead>
-                    <tr>
-                        <th>{t('time')}</th>
-                        <th>{t('side')}</th>
-                        <th>{t('quantity')}</th>
-                        <th>{t('price')}</th>
-                        <th>{t('log_amount')}</th>
-                        <th style={{ textAlign: 'right' }}>{t('orderAction')}</th>
-                    </tr>
-                </thead>
-                <tbody>
+            {/* DESKTOP TABLE VIEW */}
+            <div className="mobile-hide" style={{ width: '100%', overflowX: 'auto' }}>
+                <table className="log-table">
+                    <thead>
+                        <tr>
+                            <th>{t('time')}</th>
+                            <th>{t('side')}</th>
+                            <th>{t('quantity')}</th>
+                            <th>{t('price')}</th>
+                            <th>{t('log_amount')}</th>
+                            <th style={{ textAlign: 'right' }}>{t('orderAction')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {logs.length > 0 ? logs.slice(0, 5).map((log, idx) => {
+                            const amountKrw = Number(log.amount) || (Number(log.qty) * Number(log.price) * 1400);
+                            return (
+                                <tr key={idx}>
+                                    <td style={{ color: 'var(--calm-gray)', fontSize: '0.8rem' }}>{log.date}</td>
+                                    <td>
+                                        {log.note && log.note.includes('Soul-Escape') ? (
+                                            <span className="soul-badge">[SOUL]</span>
+                                        ) : (
+                                            <span style={{
+                                                color: log.side === 'BUY' ? 'var(--action-buy)' : 'var(--action-sell)',
+                                                fontWeight: '700',
+                                                fontSize: '0.8rem'
+                                            }}>
+                                                {log.side === 'BUY' ? t('buyingTitle') : t('sellingTitle')}
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td style={{ fontWeight: '600' }}>{Number(log.qty || 0).toLocaleString()} {t('unit_shares')}</td>
+                                    <td style={{ fontFamily: 'var(--font-display)' }}>${Number(log.price || 0).toFixed(2)}</td>
+                                    <td style={{ color: 'var(--calm-white)', fontWeight: '600' }}>
+                                        {t('currency_krw')}{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                    </td>
+                                    <td style={{ textAlign: 'right' }}>
+                                        <button
+                                            className="modal-close help-label-custom pos-center"
+                                            style={{ fontSize: '1.2rem', padding: '0 8px', color: 'var(--calm-gray)', background: 'none', border: 'none', cursor: 'pointer', display: 'inline-block' }}
+                                            onClick={() => onDelete(idx)}
+                                            data-tooltip={t('delete_log_tooltip')}
+                                        >
+                                            &times;
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        }) : (
+                            <tr>
+                                <td colSpan="6" style={{ textAlign: 'center', padding: '40px', color: 'var(--calm-gray)' }}>
+                                    {t('noOrders')}
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* MOBILE CARD VIEW */}
+            <div className="desktop-hide">
+                <div className="trade-log-cards">
                     {logs.length > 0 ? logs.slice(0, 5).map((log, idx) => {
                         const amountKrw = Number(log.amount) || (Number(log.qty) * Number(log.price) * 1400);
+                        const isBuy = log.side === 'BUY';
+                        const isSoul = log.note && log.note.includes('Soul-Escape');
+
                         return (
-                            <tr key={idx}>
-                                <td style={{ color: 'var(--calm-gray)', fontSize: '0.8rem' }}>{log.date}</td>
-                                <td>
-                                    {log.note && log.note.includes('Soul-Escape') ? (
-                                        <span className="soul-badge">[SOUL]</span>
-                                    ) : (
-                                        <span style={{
-                                            color: log.side === 'BUY' ? 'var(--action-buy)' : 'var(--action-sell)',
-                                            fontWeight: '700',
-                                            fontSize: '0.8rem'
-                                        }}>
-                                            {log.side === 'BUY' ? t('buyingTitle') : t('sellingTitle')}
-                                        </span>
-                                    )}
-                                </td>
-                                <td style={{ fontWeight: '600' }}>{Number(log.qty || 0).toLocaleString()} {t('unit_shares')}</td>
-                                <td style={{ fontFamily: 'var(--font-display)' }}>${Number(log.price || 0).toFixed(2)}</td>
-                                <td style={{ color: 'var(--calm-white)', fontWeight: '600' }}>
-                                    {t('currency_krw')}{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-                                </td>
-                                <td style={{ textAlign: 'right' }}>
+                            <div key={idx} className={`trade-card ${isBuy ? 'is-buy' : 'is-sell'}`}>
+                                <div className="trade-card-left">
+                                    <div className={`trade-side-indicator ${isBuy ? 'buy' : 'sell'}`}>
+                                        {isBuy ? t('buyingTitle') : t('sellingTitle')}
+                                        {isSoul && <span className="soul-tag">SOUL</span>}
+                                    </div>
+                                    <div className="trade-time">{log.date}</div>
+                                </div>
+                                <div className="trade-card-center">
+                                    <div className="trade-qty">{Number(log.qty || 0).toLocaleString()} {t('unit_shares')}</div>
+                                    <div className="trade-price">${Number(log.price || 0).toFixed(2)}</div>
+                                </div>
+                                <div className="trade-card-right">
+                                    <div className="trade-amount">{t('currency_krw')}{amountKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
                                     <button
-                                        className="modal-close help-label-custom pos-center"
-                                        style={{ fontSize: '1.2rem', padding: '0 8px', color: 'var(--calm-gray)', background: 'none', border: 'none', cursor: 'pointer', display: 'inline-block' }}
+                                        className="trade-delete-btn"
                                         onClick={() => onDelete(idx)}
-                                        data-tooltip={t('delete_log_tooltip')}
                                     >
                                         &times;
                                     </button>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         );
                     }) : (
-                        <tr>
-                            <td colSpan="6" style={{ textAlign: 'center', padding: '40px', color: 'var(--calm-gray)' }}>
-                                {t('noOrders')}
-                            </td>
-                        </tr>
+                        <div className="no-logs-mobile">
+                            {t('noOrders')}
+                        </div>
                     )}
-                </tbody>
-            </table>
+                </div>
+            </div>
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
                 <button
                     className="btn-ghost"
