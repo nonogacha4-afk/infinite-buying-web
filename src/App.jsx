@@ -805,7 +805,7 @@ function App() {
                     </>
                 ) : (
                     <div className="mobile-view-container">
-                        <div className="mobile-slide-wrapper" style={{ transform: `translateX(${activeTab === 'TRADING' ? '0%' : activeTab === 'CHART' ? '-33.333%' : '-66.666%'})` }}>
+                        <div className="mobile-slide-wrapper" style={{ transform: `translateX(${activeTab === 'TRADING' ? '0%' : '-50%'})` }}>
                             {/* TAB 1: TRADING (매매전략) */}
                             <div className="mobile-tab-content">
                                 <ErrorBoundary>
@@ -859,18 +859,8 @@ function App() {
                                 </ErrorBoundary>
                             </div>
 
-                            {/* TAB 2: CHART (차트분석) */}
+                            {/* TAB 2: HISTORY (전체기록) */}
                             <div className="mobile-tab-content">
-                                <ErrorBoundary>
-                                    <PriceChart
-                                        history={history}
-                                        currentPrice={currentPrice}
-                                        avgPrice={strategyConfig.avgPrice || 0}
-                                        targetPct={strategyConfig.tp1Trigger || 10}
-                                        ticker={ticker}
-                                        t={t}
-                                    />
-                                </ErrorBoundary>
                                 <ErrorBoundary>
                                     <AmmoMagazine
                                         config={strategyConfig}
@@ -884,10 +874,6 @@ function App() {
                                         t={t}
                                     />
                                 </ErrorBoundary>
-                            </div>
-
-                            {/* TAB 3: HISTORY (전체기록) */}
-                            <div className="mobile-tab-content">
                                 <ErrorBoundary>
                                     <StrategyState
                                         ticker={ticker}
