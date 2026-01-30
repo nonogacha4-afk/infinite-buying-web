@@ -4,7 +4,6 @@ import { TrendingUp, BarChart3, History } from 'lucide-react';
 const MobileNav = ({ activeTab, setActiveTab, t }) => {
     const tabs = [
         { id: 'TRADING', label: t('navTrading') || 'TRADING', icon: <TrendingUp size={20} /> },
-        { id: 'CHART', label: t('navChart') || 'CHART', icon: <BarChart3 size={20} /> },
         { id: 'HISTORY', label: t('navHistory') || 'HISTORY', icon: <History size={20} /> }
     ];
 
