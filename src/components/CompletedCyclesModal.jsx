@@ -130,16 +130,16 @@ const CompletedCyclesModal = ({ isOpen, onClose, cycles, onDelete, triggerConfir
                             return (
                                 <div key={idx} className={`cycle-card ${isPositive ? 'is-positive' : 'is-negative'}`}>
                                     <div className="cycle-card-header">
-                                        <div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <span style={{ fontWeight: '800', fontSize: '1.1rem' }}>{cycle.ticker}</span>
-                                                {cycle.isFailed && <span style={{ fontSize: '0.6rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', padding: '1px 4px', borderRadius: '3px', fontWeight: '900' }}>FAILED</span>}
+                                                <span style={{ fontWeight: '900', fontSize: '1.2rem', color: 'var(--calm-white)' }}>{cycle.ticker}</span>
+                                                {cycle.isFailed && <span style={{ fontSize: '0.6rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', padding: '2px 6px', borderRadius: '4px', fontWeight: '900', border: '1px solid rgba(239, 68, 68, 0.2)' }}>FAILED</span>}
                                             </div>
-                                            <div style={{ fontSize: '0.7rem', color: 'var(--calm-gray)', marginTop: '2px' }}>{cycle.date} {cycle.endTime}</div>
+                                            <div style={{ fontSize: '0.7rem', color: 'var(--calm-gray)', opacity: 0.8 }}>{cycle.date} {cycle.endTime}</div>
                                         </div>
                                         <button
                                             className="modal-close"
-                                            style={{ padding: '0 5px', fontSize: '1.2rem', color: 'var(--calm-gray)' }}
+                                            style={{ padding: '8px', fontSize: '1.2rem', color: 'var(--calm-gray)', background: 'rgba(255,255,255,0.05)', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                             onClick={() => triggerConfirm(t('deleteLog') + '?', () => onDelete(idx))}
                                         >
                                             &times;
@@ -148,27 +148,27 @@ const CompletedCyclesModal = ({ isOpen, onClose, cycles, onDelete, triggerConfir
 
                                     <div className="cycle-card-grid">
                                         <div className="cycle-card-item">
-                                            <span className="cycle-card-label">{t('cycleDuration')}</span>
-                                            <span className="cycle-card-val">{cycle.durationDays || '1'} {t('days')} ({cycle.turns}T)</span>
-                                        </div>
-                                        <div className="cycle-card-item">
                                             <span className="cycle-card-label">{t('summaryInvestment')}</span>
                                             <span className="cycle-card-val">{t('currency_krw')}{cycle.totalInvestedKrw?.toLocaleString()}</span>
                                         </div>
                                         <div className="cycle-card-item">
+                                            <span className="cycle-card-label">{t('cycleDuration')}</span>
+                                            <span className="cycle-card-val" style={{ color: 'var(--calm-white)' }}>{cycle.durationDays || '1'} {t('days')} <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>({cycle.turns}T)</span></span>
+                                        </div>
+                                        <div className="cycle-card-item highlight">
                                             <span className="cycle-card-label">{t('summaryProfitAmount')}</span>
-                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)' }}>
+                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--neon-blue)' : 'var(--action-danger)', fontSize: '1.1rem' }}>
                                                 {isPositive ? '+' : ''}{t('currency_krw')}{cycle.profitKrw?.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="cycle-card-item">
+                                        <div className="cycle-card-item highlight">
                                             <span className="cycle-card-label">ROE / ROI</span>
-                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--action-buy)' : 'var(--action-sell)' }}>
+                                            <span className="cycle-card-val" style={{ color: isPositive ? 'var(--neon-blue)' : 'var(--action-danger)', fontSize: '1.1rem' }}>
                                                 {isPositive ? '+' : ''}{cycle.profitRate?.toFixed(2)}% / {cycle.roi?.toFixed(2)}%
                                             </span>
                                         </div>
                                     </div>
-                                    <div style={{ marginTop: '12px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: 'var(--calm-gray)', textAlign: 'center' }}>
+                                    <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '0.75rem', color: 'var(--calm-gray)', textAlign: 'center', fontWeight: '500' }}>
                                         {cycle.startDate} ~ {cycle.endDate}
                                     </div>
                                 </div>
