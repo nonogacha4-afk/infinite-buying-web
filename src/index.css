@@ -2505,13 +2505,13 @@ html {
 
 .mobile-slide-wrapper {
     display: flex;
-    width: 300%;
+    width: 200%;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
 .mobile-tab-content {
-    width: 33.3333%;
+    width: 50%;
     flex-shrink: 0;
     padding: 16px 12px;
     box-sizing: border-box;
@@ -2601,4 +2601,191 @@ screen and (max-aspect-ratio: 1/2) {
         height: 70px !important;
         font-size: 1.2rem !important;
     }
+}
+
+/* --- TRADE LOG MOBILE CARDS --- */
+.trade-log-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.trade-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.trade-card:active {
+    background: rgba(255, 255, 255, 0.06);
+    transform: scale(0.98);
+}
+
+.trade-card.is-buy {
+    border-left: 3px solid var(--action-buy);
+}
+
+.trade-card.is-sell {
+    border-left: 3px solid var(--action-sell);
+}
+
+.trade-card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 80px;
+}
+
+.trade-side-indicator {
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.trade-side-indicator.buy {
+    color: var(--action-buy);
+}
+
+.trade-side-indicator.sell {
+    color: var(--action-sell);
+}
+
+.soul-tag {
+    background: #7c3aed;
+    color: white;
+    font-size: 0.55rem;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 950;
+}
+
+.trade-time {
+    font-size: 0.65rem;
+    color: var(--calm-gray);
+    opacity: 0.7;
+}
+
+.trade-card-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trade-qty {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--calm-white);
+}
+
+.trade-price {
+    font-size: 0.75rem;
+    color: var(--calm-gray);
+    font-family: var(--font-display);
+}
+
+.trade-card-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trade-amount {
+    font-size: 0.95rem;
+    font-weight: 850;
+    color: var(--calm-white);
+    text-align: right;
+}
+
+.trade-delete-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--calm-gray);
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.no-logs-mobile {
+    padding: 30px;
+    text-align: center;
+    color: var(--calm-gray);
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* --- CYCLE CARD IMPROVEMENTS --- */
+.cycle-card {
+    background: rgba(30, 36, 48, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cycle-card.is-positive {
+    background: linear-gradient(135deg, rgba(30, 36, 48, 0.5) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border-left: 4px solid var(--action-buy);
+}
+
+.cycle-card.is-negative {
+    background: linear-gradient(135deg, rgba(30, 36, 48, 0.5) 0%, rgba(239, 68, 68, 0.05) 100%);
+    border-left: 4px solid var(--action-danger);
+}
+
+.cycle-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.cycle-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.cycle-card-item {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cycle-card-item.highlight {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.cycle-card-label {
+    font-size: 0.55rem;
+    font-weight: 800;
+    color: var(--calm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cycle-card-val {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--calm-white);
 }
