@@ -2491,6 +2491,39 @@ html {
     .mobile-tab-content {
         gap: 16px;
     }
+
+    /* FIX: Overlapping Portfolio Summary Metrics */
+    .premium-metrics-bar {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px !important;
+        padding: 16px !important;
+        justify-content: stretch !important;
+    }
+
+    .metric-item {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+
+    .metric-item:not(:last-child)::after {
+        display: none !important;
+    }
+
+    .metric-label {
+        font-size: 0.6rem !important;
+        opacity: 0.8;
+    }
+
+    .metric-value {
+        font-size: 1.1rem !important;
+        white-space: nowrap;
+    }
+
+    /* REDUCE PADDING FOR MOBILE CONTENT */
+    .mobile-tab-content {
+        padding: 12px 10px !important;
+    }
 }
 
 /* --- MOBILE NAVIGATION & SLIDE UI CORE (V2.8.0) --- */
@@ -2615,11 +2648,12 @@ screen and (max-aspect-ratio: 1/2) {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 14px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: all 0.2s ease;
+    gap: 8px;
 }
 
 .trade-card:active {
@@ -2699,10 +2733,11 @@ screen and (max-aspect-ratio: 1/2) {
 }
 
 .trade-amount {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 850;
     color: var(--calm-white);
     text-align: right;
+    white-space: nowrap;
 }
 
 .trade-delete-btn {
